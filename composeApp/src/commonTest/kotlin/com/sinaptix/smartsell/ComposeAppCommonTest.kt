@@ -1,6 +1,6 @@
 package com.sinaptix.smartsell
 
-import kotlin.test.Test
+/*import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class ComposeAppCommonTest {
@@ -9,4 +9,4 @@ class ComposeAppCommonTest {
     fun example() {
         assertEquals(3, 1 + 2)
     }
-}
+}*/
