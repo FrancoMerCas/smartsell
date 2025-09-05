@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>137365221264-553mg64m2si89828neo8u9o9e4sgfg8t.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.137365221264-553mg64m2si89828neo8u9o9e4sgfg8t</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>137365221264-8c1hgjl89mr333gh20u2nsnt3nl9n7io.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAN8BSMoZ-rpbg7t5rOASCo5d25lYYxJRg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>137365221264</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.sinaptix.smartsell.SmartSell</string>
+	<key>PROJECT_ID</key>
+	<string>smartsell-470902</string>
+	<key>STORAGE_BUCKET</key>
+	<string>smartsell-470902.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:137365221264:ios:23dd4f70d2e50f7a818d15</string>
+</dict>
+</plist>

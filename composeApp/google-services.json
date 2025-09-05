@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "137365221264",
+    "project_id": "smartsell-470902",
+    "storage_bucket": "smartsell-470902.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:137365221264:android:8ea0a751aa766b32818d15",
+        "android_client_info": {
+          "package_name": "com.sinaptix.smartsell"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "137365221264-8c1hgjl89mr333gh20u2nsnt3nl9n7io.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sinaptix.smartsell",
+            "certificate_hash": "4cf8f8f58f7972585048412957b43e5f79cb8286"
+          }
+        },
+        {
+          "client_id": "137365221264-k77vbf6uiktf245213p2e2ghh594tsth.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCq0v7XC8f5VeB4D-MyZiJYHuf8LPERw0Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "137365221264-k77vbf6uiktf245213p2e2ghh594tsth.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

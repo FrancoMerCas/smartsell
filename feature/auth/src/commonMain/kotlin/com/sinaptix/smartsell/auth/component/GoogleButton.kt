@@ -29,11 +29,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
 import com.sinaptix.smartsell.shared.BorderIdle
+import com.sinaptix.smartsell.shared.ButtonPrimary
 import com.sinaptix.smartsell.shared.FontSize
 import com.sinaptix.smartsell.shared.IconSecondary
 import com.sinaptix.smartsell.shared.Resources
-import com.sinaptix.smartsell.shared.SurfaceLighter
-import com.sinaptix.smartsell.shared.TextPrimary
+import com.sinaptix.smartsell.shared.TextCreme
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 
@@ -45,7 +45,7 @@ fun GoogleButton(
     secondaryText: String = "Please wait...",
     icon: DrawableResource = Resources.Image.GoogleLogo,
     shape: Shape = RoundedCornerShape(size = 99.dp),
-    backgroundColor: Color = SurfaceLighter,
+    backgroundColor: Color = ButtonPrimary,
     borderColor: Color = BorderIdle,
     progressIndicatorColor: Color = IconSecondary,
     onClick: () -> Unit,
@@ -95,7 +95,7 @@ fun GoogleButton(
             Spacer(modifier = Modifier.width(12.dp))
             Text(
                 text = buttonText,
-                color = TextPrimary,
+                color = TextCreme,
                 fontSize = FontSize.REGULAR
             )
         }

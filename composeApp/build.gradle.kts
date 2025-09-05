@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.google.services)
 }
 
 kotlin {
@@ -16,12 +17,17 @@ kotlin {
     }
     
     listOf(
+        iosX64(),
         iosArm64(),
         iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
             baseName = "ComposeApp"
             isStatic = true
+
+            export(compose.runtime)
+            export(compose.foundation)
+            export(compose.material3)
         }
     }
     
@@ -32,16 +38,20 @@ kotlin {
             implementation(libs.splash.screen)
         }
         commonMain.dependencies {
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.material3)
+            api(compose.runtime)
+            api(compose.foundation)
+            api(compose.material3)
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
 
+            implementation(libs.auth.kmp)
+            implementation(libs.firebase.app)
+
             implementation(project(path = ":navigation"))
+            implementation(project(path = ":shared"))
         }
     }
 }
@@ -73,7 +83,15 @@ android {
     }
 }
 
+composeCompiler {
+    enableStrongSkippingMode = true
+    stabilityConfigurationFile = rootProject.layout.projectDirectory.file("stability_config.conf")
+}
+
+
 dependencies {
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.common.ktx)
     debugImplementation(compose.uiTooling)
 }
 

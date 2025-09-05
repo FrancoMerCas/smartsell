@@ -16,6 +16,7 @@ kotlin {
     }
 
     listOf(
+        iosX64(),
         iosArm64(),
         iosSimulatorArm64()
     ).forEach { iosTarget ->
@@ -42,6 +43,9 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtime.compose)
 
             implementation(libs.messagebar.kmp)
+            implementation(libs.auth.kmp)
+            implementation(libs.auth.firebase.kmp)
+
             implementation(project(path = ":shared"))
         }
     }
@@ -59,4 +63,9 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+}
+
+composeCompiler {
+    enableStrongSkippingMode = true
+    stabilityConfigurationFile = rootProject.layout.projectDirectory.file("stability_config.conf")
 }
