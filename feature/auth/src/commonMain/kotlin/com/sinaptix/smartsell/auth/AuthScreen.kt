@@ -3,7 +3,6 @@ package com.sinaptix.smartsell.auth
 import ContentWithMessageBar
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -29,9 +28,12 @@ import com.sinaptix.smartsell.shared.FontSize.EXTRA_LARGE
 import com.sinaptix.smartsell.shared.FontSize.EXTRA_REGULAR
 import com.sinaptix.smartsell.shared.MadaBoldFont
 import com.sinaptix.smartsell.shared.MadaRegularFont
+import com.sinaptix.smartsell.shared.SurfaceBrand
+import com.sinaptix.smartsell.shared.SurfaceError
 import com.sinaptix.smartsell.shared.TextCreme
 import com.sinaptix.smartsell.shared.TextPrimary
 import com.sinaptix.smartsell.shared.TextSecondary
+import com.sinaptix.smartsell.shared.TextWhite
 import rememberMessageBarState
 
 @Composable
@@ -47,7 +49,11 @@ fun AuthScreen() {
                     bottom = padding.calculateBottomPadding()
                 ),
             messageBarState = messageBarState,
-            errorMaxLines = 2
+            errorMaxLines = 2,
+            errorContainerColor = SurfaceError,
+            errorContentColor = TextWhite,
+            successContainerColor = SurfaceBrand,
+            successContentColor = TextPrimary
         ) {
             Column(
                 modifier = Modifier
