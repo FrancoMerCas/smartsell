@@ -3,7 +3,6 @@ package com.sinaptix.smartsell.auth
 import ContentWithMessageBar
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -29,13 +28,18 @@ import com.sinaptix.smartsell.shared.FontSize.EXTRA_LARGE
 import com.sinaptix.smartsell.shared.FontSize.EXTRA_REGULAR
 import com.sinaptix.smartsell.shared.MadaBoldFont
 import com.sinaptix.smartsell.shared.MadaRegularFont
+import com.sinaptix.smartsell.shared.SurfaceBrand
+import com.sinaptix.smartsell.shared.SurfaceError
 import com.sinaptix.smartsell.shared.TextCreme
 import com.sinaptix.smartsell.shared.TextPrimary
 import com.sinaptix.smartsell.shared.TextSecondary
+import com.sinaptix.smartsell.shared.TextWhite
+import org.koin.compose.viewmodel.koinViewModel
 import rememberMessageBarState
 
 @Composable
 fun AuthScreen() {
+    val viewModel = koinViewModel<AuthViewModel>()
     val messageBarState = rememberMessageBarState()
     var loadingState by remember { mutableStateOf(false) }
 
@@ -47,7 +51,11 @@ fun AuthScreen() {
                     bottom = padding.calculateBottomPadding()
                 ),
             messageBarState = messageBarState,
-            errorMaxLines = 2
+            errorMaxLines = 2,
+            errorContainerColor = SurfaceError,
+            errorContentColor = TextWhite,
+            successContainerColor = SurfaceBrand,
+            successContentColor = TextPrimary
         ) {
             Column(
                 modifier = Modifier
@@ -89,12 +97,19 @@ fun AuthScreen() {
                     linkAccount = false,
                     onResult = { result ->
                         result.onSuccess { firebaseUser ->
-                            messageBarState.addSuccess("Authentication successful!")
-                            println("Test -> AuthScreen -> ${firebaseUser}")
+                            viewModel.createCustomer(
+                                user = firebaseUser,
+                                onSuccess = {
+                                    messageBarState.addSuccess("Authentication successful!")
+                                },
+                                onError = { errorMessage ->
+                                    messageBarState.addError(errorMessage)
+                                }
+                            )
                             loadingState = false
                         }
                         result.onFailure { error ->
-                            if(error.message?.contains("A network error") == true) {
+                            if (error.message?.contains("A network error") == true) {
                                 messageBarState.addError("Internet connection unavailable")
                             } else if (error.message?.contains("IdToken is null") == true) {
                                 messageBarState.addError("Sign in canceled")
