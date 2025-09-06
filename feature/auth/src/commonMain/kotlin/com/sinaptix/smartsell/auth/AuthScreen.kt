@@ -34,10 +34,12 @@ import com.sinaptix.smartsell.shared.TextCreme
 import com.sinaptix.smartsell.shared.TextPrimary
 import com.sinaptix.smartsell.shared.TextSecondary
 import com.sinaptix.smartsell.shared.TextWhite
+import org.koin.compose.viewmodel.koinViewModel
 import rememberMessageBarState
 
 @Composable
 fun AuthScreen() {
+    val viewModel = koinViewModel<AuthViewModel>()
     val messageBarState = rememberMessageBarState()
     var loadingState by remember { mutableStateOf(false) }
 
@@ -95,12 +97,19 @@ fun AuthScreen() {
                     linkAccount = false,
                     onResult = { result ->
                         result.onSuccess { firebaseUser ->
-                            messageBarState.addSuccess("Authentication successful!")
-                            println("Test -> AuthScreen -> ${firebaseUser}")
+                            viewModel.createCustomer(
+                                user = firebaseUser,
+                                onSuccess = {
+                                    messageBarState.addSuccess("Authentication successful!")
+                                },
+                                onError = { errorMessage ->
+                                    messageBarState.addError(errorMessage)
+                                }
+                            )
                             loadingState = false
                         }
                         result.onFailure { error ->
-                            if(error.message?.contains("A network error") == true) {
+                            if (error.message?.contains("A network error") == true) {
                                 messageBarState.addError("Internet connection unavailable")
                             } else if (error.message?.contains("IdToken is null") == true) {
                                 messageBarState.addError("Sign in canceled")
