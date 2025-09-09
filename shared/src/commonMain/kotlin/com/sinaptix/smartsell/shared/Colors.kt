@@ -31,9 +31,10 @@ val CategoryRed = Color(0xFFFF5E60)     // Rojo vibrante - urgencia/agotado
 val Surface = White
 val SurfaceLighter = GrayLighter
 val SurfaceDarker = Gray
-val SurfaceBrand = CategoryGreen//Yellowish
-val SurfaceError = Color(0xFFE8D6D6)    // Rojo muy suave derivado
-val SurfaceSecondary = Color(0xFFE2D9CC) // Naranja muy suave derivado
+val SurfaceGreenLighter = SoftSageGreen
+val SurfaceBrand = CategoryGreen                  //Yellowish
+val SurfaceError = Color(0xFFE8D6D6)        // Rojo muy suave derivado
+val SurfaceSecondary = Color(0xFFE2D9CC)    // Naranja muy suave derivado
 
 // ===== BORDES =====
 val BorderIdle = GrayDarker
