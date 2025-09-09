@@ -25,7 +25,7 @@ import org.jetbrains.compose.resources.painterResource
 @Composable
 fun BottomBar(
     modifier: Modifier = Modifier,
-    selected: Boolean,
+    selected: BottomBarDestination,
     onSelect: (BottomBarDestination) -> Unit
 ) {
     Row(
@@ -33,10 +33,10 @@ fun BottomBar(
             .fillMaxWidth()
             .shadow(
                 elevation = 12.dp,
-                shape = RoundedCornerShape(12.dp),
+                shape = RoundedCornerShape(8.dp),
                 clip = false
             )
-            .clip(RoundedCornerShape(12.dp))
+            .clip(RoundedCornerShape(8.dp))
             .background(SurfaceGreenLighter)
             .padding(
                 vertical = 12.dp,
@@ -47,7 +47,7 @@ fun BottomBar(
     ) {
         BottomBarDestination.entries.forEach { destination ->
             val animatedTint by animateColorAsState(
-                targetValue = if (selected) IconSecondary else IconPrimary
+                targetValue = if (selected  == destination) IconSecondary else IconPrimary
             )
             Icon(
                 modifier = Modifier
