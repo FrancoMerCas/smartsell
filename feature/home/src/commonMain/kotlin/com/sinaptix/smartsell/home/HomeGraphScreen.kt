@@ -43,17 +43,13 @@ import com.sinaptix.smartsell.home.domain.CustomDrawerState
 import com.sinaptix.smartsell.home.utils.isOpened
 import com.sinaptix.smartsell.home.utils.opposite
 import com.sinaptix.smartsell.shared.Alpha
-import com.sinaptix.smartsell.shared.CardShadow
-import com.sinaptix.smartsell.shared.CreameWhite
 import com.sinaptix.smartsell.shared.FontSize
 import com.sinaptix.smartsell.shared.IconPrimary
 import com.sinaptix.smartsell.shared.MadaVariableWghtFont
 import com.sinaptix.smartsell.shared.Resources
-import com.sinaptix.smartsell.shared.SageMist
 import com.sinaptix.smartsell.shared.Surface
 import com.sinaptix.smartsell.shared.SurfaceGreenLighter
 import com.sinaptix.smartsell.shared.SurfaceLighter
-import com.sinaptix.smartsell.shared.SurfaceSecondary
 import com.sinaptix.smartsell.shared.TextPrimary
 import com.sinaptix.smartsell.shared.navigation.Screen
 import com.sinaptix.smartsell.shared.util.getScreenWidth
