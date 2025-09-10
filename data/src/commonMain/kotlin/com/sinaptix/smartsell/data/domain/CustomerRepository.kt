@@ -1,5 +1,6 @@
 package com.sinaptix.smartsell.data.domain
 
+import com.sinaptix.smartsell.shared.util.RequestState
 import dev.gitlive.firebase.auth.FirebaseUser
 
 interface CustomerRepository {
@@ -10,4 +11,6 @@ interface CustomerRepository {
         onSuccess: () -> Unit,
         onError: (String) -> Unit
     )
+
+    suspend fun signOut(): RequestState<Unit>
 }
