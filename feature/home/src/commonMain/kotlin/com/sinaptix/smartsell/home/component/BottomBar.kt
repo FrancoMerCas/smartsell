@@ -20,6 +20,9 @@ import com.sinaptix.smartsell.home.domain.BottomBarDestination
 import com.sinaptix.smartsell.shared.IconPrimary
 import com.sinaptix.smartsell.shared.IconSecondary
 import com.sinaptix.smartsell.shared.SurfaceGreenLighter
+import com.sinaptix.smartsell.shared.TabIndicator
+import com.sinaptix.smartsell.shared.TabSelected
+import com.sinaptix.smartsell.shared.TabUnselected
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
@@ -47,7 +50,7 @@ fun BottomBar(
     ) {
         BottomBarDestination.entries.forEach { destination ->
             val animatedTint by animateColorAsState(
-                targetValue = if (selected  == destination) IconSecondary else IconPrimary
+                targetValue = if (selected  == destination) TabIndicator else TabUnselected
             )
             Icon(
                 modifier = Modifier
