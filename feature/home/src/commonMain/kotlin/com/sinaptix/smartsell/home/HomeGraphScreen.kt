@@ -1,6 +1,7 @@
 package com.sinaptix.smartsell.home
 
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -16,6 +17,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -24,13 +26,16 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.sinaptix.smartsell.home.component.BottomBar
+import com.sinaptix.smartsell.home.component.CustomDrawer
 import com.sinaptix.smartsell.home.domain.BottomBarDestination
+import com.sinaptix.smartsell.home.domain.CustomDrawerState
 import com.sinaptix.smartsell.shared.FontSize
 import com.sinaptix.smartsell.shared.IconPrimary
 import com.sinaptix.smartsell.shared.MadaVariableWghtFont
 import com.sinaptix.smartsell.shared.Resources
 import com.sinaptix.smartsell.shared.Surface
 import com.sinaptix.smartsell.shared.SurfaceGreenLighter
+import com.sinaptix.smartsell.shared.SurfaceLighter
 import com.sinaptix.smartsell.shared.TextPrimary
 import com.sinaptix.smartsell.shared.navigation.Screen
 
@@ -53,78 +58,93 @@ fun HomeGraphScreen() {
             }
         }
     }
-    Scaffold(
-        containerColor = Surface,
-        topBar = {
-            CenterAlignedTopAppBar(
-                title = {
-                    AnimatedContent(
-                        targetState = selectedDestination
-                    ) { destination ->
-                        Text(
-                            text = destination.title,
-                            fontFamily = MadaVariableWghtFont(),
-                            fontSize = FontSize.LARGE,
-                            color = TextPrimary,
-                        )
-                    }
-                },
-                navigationIcon = {
-                    IconButton(
-                        onClick = {}
-                    ) {
-                        Icon(
-                            painter = painterResource(Resources.Icon.Menu),
-                            contentDescription = "Menu Icon",
-                            tint = IconPrimary
-                        )
-                    }
-                },
-                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                    containerColor = SurfaceGreenLighter,
-                    scrolledContainerColor = SurfaceGreenLighter,
-                    navigationIconContentColor = IconPrimary,
-                    titleContentColor = TextPrimary,
-                    actionIconContentColor = IconPrimary
-                )
-            )
-        }
-    ) { padding ->
-        Column(
-            modifier = Modifier.fillMaxSize()
-                .padding(
-                    top = padding.calculateTopPadding(),
-                    bottom = padding.calculateBottomPadding()
-                )
-        ) {
-            NavHost(
-                modifier = Modifier.weight(1f),
-                navController = navController,
-                startDestination = Screen.ProductsOverview
-            ) {
-                composable<Screen.ProductsOverview> {}
-                composable<Screen.Cart> {}
-                composable<Screen.Categories> {}
-            }
-            Spacer(modifier = Modifier.weight(1f))
-            Box(
-                modifier = Modifier
-                    .padding(all = 12.dp)
-            ) {
-                BottomBar(
-                    selected = selectedDestination,
-                    onSelect = { destination ->
-                        navController.navigate(destination.screen) {
-                            launchSingleTop = true
-                            popUpTo<Screen.ProductsOverview>() {
-                                saveState = true
-                                inclusive = false
-                            }
-                            restoreState = true
+
+    var drawerState = remember { mutableStateOf(CustomDrawerState.Closed) }
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(SurfaceLighter)
+    ) {
+        CustomDrawer(
+            onProfileClick = {},
+            onSignOutClick = {},
+            onContactUsClick = {},
+            onAdminPanelClick = {}
+        )
+        /*Scaffold(
+            containerColor = Surface,
+            topBar = {
+                CenterAlignedTopAppBar(
+                    title = {
+                        AnimatedContent(
+                            targetState = selectedDestination
+                        ) { destination ->
+                            Text(
+                                text = destination.title,
+                                fontFamily = MadaVariableWghtFont(),
+                                fontSize = FontSize.LARGE,
+                                color = TextPrimary,
+                            )
                         }
-                    }
+                    },
+                    navigationIcon = {
+                        IconButton(
+                            onClick = {}
+                        ) {
+                            Icon(
+                                painter = painterResource(Resources.Icon.Menu),
+                                contentDescription = "Menu Icon",
+                                tint = IconPrimary
+                            )
+                        }
+                    },
+                    colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+                        containerColor = SurfaceGreenLighter,
+                        scrolledContainerColor = SurfaceGreenLighter,
+                        navigationIconContentColor = IconPrimary,
+                        titleContentColor = TextPrimary,
+                        actionIconContentColor = IconPrimary
+                    )
                 )
             }
-        }
+        ) { padding ->
+            Column(
+                modifier = Modifier.fillMaxSize()
+                    .padding(
+                        top = padding.calculateTopPadding(),
+                        bottom = padding.calculateBottomPadding()
+                    )
+            ) {
+                NavHost(
+                    modifier = Modifier.weight(1f),
+                    navController = navController,
+                    startDestination = Screen.ProductsOverview
+                ) {
+                    composable<Screen.ProductsOverview> {}
+                    composable<Screen.Cart> {}
+                    composable<Screen.Categories> {}
+                }
+                Spacer(modifier = Modifier.weight(1f))
+                Box(
+                    modifier = Modifier
+                        .padding(all = 12.dp)
+                ) {
+                    BottomBar(
+                        selected = selectedDestination,
+                        onSelect = { destination ->
+                            navController.navigate(destination.screen) {
+                                launchSingleTop = true
+                                popUpTo<Screen.ProductsOverview>() {
+                                    saveState = true
+                                    inclusive = false
+                                }
+                                restoreState = true
+                            }
+                        }
+                    )
+                }
+            }
+        }  */
     }
 }
