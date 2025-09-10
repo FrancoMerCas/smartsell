@@ -2,6 +2,7 @@ package com.sinaptix.smartsell.di
 
 import com.sinaptix.smartsell.auth.module.authModule
 import com.sinaptix.smartsell.data.module.repositoryModule
+import com.sinaptix.smartsell.home.module.homeModule
 import org.koin.core.KoinApplication
 import org.koin.core.context.startKoin
 
@@ -18,5 +19,6 @@ fun initializeKoin(
 
 private fun getAllModules() = listOf(
     repositoryModule,
-    authModule
+    authModule,
+    homeModule
 )
