@@ -37,6 +37,7 @@
     <string name="descript_icon_back_arrow">Icono flecha atras</string>
     <string name="descript_icon_drawer_icon">Icono Drawer</string>
     <string name="descript_icon_google_logo">Icono Google logo</string>
+    <string name="descript_icon_button">Icono de boton</string>
 
     <!-- Errors -->
     <string name="error_network">A network error</string>
@@ -44,4 +45,14 @@
     <string name="error_not_firebase_token">IdToken is null</string>
     <string name="error_signin_cancel">Inicio de sesión cancelado</string>
     <string name="error_unknow">Error desconocido</string>
+
+
+    <!-- PlaceHolders -->
+    <string name="placeholder_firstname">Nombre</string>
+    <string name="placeholder_lastname">Apellido</string>
+    <string name="placeholder_email">e-mail</string>
+    <string name="placeholder_city">Ciudad</string>
+    <string name="placeholder_zip">Codigo Postal</string>
+    <string name="placeholder_address">Dirección</string>
+    <string name="placeholder_phone_number">Numero de teléfono</string>
 </resources>
