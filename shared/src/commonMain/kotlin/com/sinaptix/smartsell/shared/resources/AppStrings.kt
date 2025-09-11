@@ -10,6 +10,7 @@ import smartsell.shared.generated.resources.auth_logging_in_google
 import smartsell.shared.generated.resources.auth_success
 import smartsell.shared.generated.resources.auth_waith
 import smartsell.shared.generated.resources.descript_icon_back_arrow
+import smartsell.shared.generated.resources.descript_icon_button
 import smartsell.shared.generated.resources.descript_icon_close
 import smartsell.shared.generated.resources.descript_icon_drawer_icon
 import smartsell.shared.generated.resources.descript_icon_google_logo
@@ -30,6 +31,13 @@ import smartsell.shared.generated.resources.nav_profile
 import smartsell.shared.generated.resources.nav_sales
 import smartsell.shared.generated.resources.nav_settings
 import smartsell.shared.generated.resources.nav_sign_out
+import smartsell.shared.generated.resources.placeholder_address
+import smartsell.shared.generated.resources.placeholder_city
+import smartsell.shared.generated.resources.placeholder_email
+import smartsell.shared.generated.resources.placeholder_firstname
+import smartsell.shared.generated.resources.placeholder_lastname
+import smartsell.shared.generated.resources.placeholder_phone_number
+import smartsell.shared.generated.resources.placeholder_zip
 import smartsell.shared.generated.resources.title_cart
 import smartsell.shared.generated.resources.title_categories
 import smartsell.shared.generated.resources.title_home
@@ -75,6 +83,7 @@ object AppStrings {
         val descriptIconBackArrow = Res.string.descript_icon_back_arrow
         val descriptIconDrawerIcon = Res.string.descript_icon_drawer_icon
         val descriptIconGoogleLogo = Res.string.descript_icon_google_logo
+        val descriptIconButton = Res.string.descript_icon_button
     }
 
     object Errors {
@@ -83,5 +92,15 @@ object AppStrings {
         val errorNotFirebaseToken = Res.string.error_not_firebase_token
         val errorSigninCancel = Res.string.error_signin_cancel
         val errorUnknow  = Res.string.error_unknow
+    }
+
+    object PlaceHolder {
+        val placeholderFirstName = Res.string.placeholder_firstname
+        val placeholderLastName = Res.string.placeholder_lastname
+        val placeholderEmail = Res.string.placeholder_email
+        val placeholderCity = Res.string.placeholder_city
+        val placeholderZip = Res.string.placeholder_zip
+        val placeholderAddress = Res.string.placeholder_address
+        val placeholderPhoneNumber = Res.string.placeholder_phone_number
     }
 }

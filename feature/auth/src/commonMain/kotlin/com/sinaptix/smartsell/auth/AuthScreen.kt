@@ -74,7 +74,7 @@ fun AuthScreen(
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(all = 24.dp)
+                    .padding(start = 24.dp, end = 24.dp, top = 24.dp)
             ) {
                 Column(
                     modifier = Modifier

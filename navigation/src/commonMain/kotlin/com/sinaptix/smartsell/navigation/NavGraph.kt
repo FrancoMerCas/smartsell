@@ -6,6 +6,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.sinaptix.smartsell.auth.AuthScreen
 import com.sinaptix.smartsell.home.HomeGraphScreen
+import com.sinaptix.smartsell.profile.ProfileScreen
 import com.sinaptix.smartsell.shared.navigation.Screen
 
 
@@ -34,8 +35,14 @@ fun SetupNavGraph(
                     navController.navigate(Screen.Auth) {
                         popUpTo<Screen.HomeGraph> { inclusive = true }
                     }
+                },
+                navigateToProfile = {
+                    navController.navigate(Screen.Profile)
                 }
             )
+        }
+        composable<Screen.Profile> {
+            ProfileScreen()
         }
     }
 }
