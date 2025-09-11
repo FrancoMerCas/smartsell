@@ -6,22 +6,18 @@ import org.jetbrains.compose.resources.DrawableResource
 
 enum class BottomBarDestination(
     val icon: DrawableResource,
-    val title: String,
     val screen: Screen
 ) {
     ProductsOverview(
         icon = AppIcon.Icon.Home,
-        title = "SmartSell",
         screen = Screen.ProductsOverview
     ),
     Cart(
-    icon = AppIcon.Icon.ShoppingCart,
-    title = "Cart",
-    screen = Screen.Cart
+        icon = AppIcon.Icon.ShoppingCart,
+        screen = Screen.Cart
     ),
     Categories(
-    icon = AppIcon.Icon.Categories,
-    title = "Categories",
-    screen = Screen.Categories
+        icon = AppIcon.Icon.Categories,
+        screen = Screen.Categories
     )
 }

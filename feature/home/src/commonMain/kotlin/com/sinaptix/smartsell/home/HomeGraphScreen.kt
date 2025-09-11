@@ -42,6 +42,7 @@ import com.sinaptix.smartsell.home.component.BottomBar
 import com.sinaptix.smartsell.home.component.CustomDrawer
 import com.sinaptix.smartsell.home.domain.BottomBarDestination
 import com.sinaptix.smartsell.home.domain.CustomDrawerState
+import com.sinaptix.smartsell.home.domain.getTitle
 import com.sinaptix.smartsell.home.utils.isOpened
 import com.sinaptix.smartsell.home.utils.opposite
 import com.sinaptix.smartsell.shared.resources.Alpha
@@ -148,7 +149,7 @@ fun HomeGraphScreen(
                                 targetState = selectedDestination
                             ) { destination ->
                                 Text(
-                                    text = destination.title,
+                                    text = destination.getTitle(),
                                     fontFamily = MadaVariableWghtFont(),
                                     fontSize = FontSize.LARGE,
                                     color = TextPrimary,
