@@ -1,0 +1,46 @@
+<resources>
+    <!-- App General -->
+    <string name="app_name">SmartSell</string>
+    <string name="app_name_first">Smart</string>
+    <string name="app_name_second">Sell</string>
+    <string name="app_name_phrase">Intelligent Sells</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_products">Products</string>
+    <string name="nav_sales">Sales</string>
+    <string name="nav_profile">Profile</string>
+    <string name="nav_settings">Settings</string>
+    <string name="nav_cart">Cart</string>
+    <string name="nav_categories">Categories</string>
+    <string name="nav_blog">Blog</string>
+    <string name="nav_location">Location</string>
+    <string name="nav_contact">Contact us</string>
+    <string name="nav_sign_out">Sign out</string>
+    <string name="nav_admin_panel">Admin panel</string>
+
+    <!-- Auth -->
+    <string name="auth_logging_in_google">Sign in with Google</string>
+    <string name="auth_waith">Please wait...</string>
+    <string name="auth_continue">Sign in to continue</string>
+    <string name="auth_success">Authentication successful!</string>
+
+    <!-- Titles -->
+    <string name="title_home">Home</string>
+    <string name="title_categories">Categories</string>
+    <string name="title_cart">Cart</string>
+
+    <!-- Descriptions -->
+    <string name="descript_icon_close">Close icon</string>
+    <string name="descript_icon_menu">Menu icon</string>
+    <string name="descript_icon_back_arrow">Back arrow icon</string>
+    <string name="descript_icon_drawer_icon">Drawer icon</string>
+    <string name="descript_icon_google_logo">Google logo icon</string>
+
+    <!-- Errors -->
+    <string name="error_network">A network error</string>
+    <string name="error_not_connection">Internet connection unavailable</string>
+    <string name="error_not_firebase_token">IdToken is null</string>
+    <string name="error_signin_cancel">Sign in canceled</string>
+    <string name="error_unknow">Unknow Error</string>
+</resources>

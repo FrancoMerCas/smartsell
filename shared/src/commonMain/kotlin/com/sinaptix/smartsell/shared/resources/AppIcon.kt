@@ -1,11 +1,9 @@
-package com.sinaptix.smartsell.shared
+package com.sinaptix.smartsell.shared.resources
 
 import smartsell.shared.generated.resources.Res
 import smartsell.shared.generated.resources.ic_back_arrow
 import smartsell.shared.generated.resources.ic_book
-import smartsell.shared.generated.resources.ic_cat
 import smartsell.shared.generated.resources.ic_check
-import smartsell.shared.generated.resources.ic_checkmark_image
 import smartsell.shared.generated.resources.ic_close
 import smartsell.shared.generated.resources.ic_delete
 import smartsell.shared.generated.resources.ic_dollar
@@ -21,16 +19,13 @@ import smartsell.shared.generated.resources.ic_plus
 import smartsell.shared.generated.resources.ic_right_arrow
 import smartsell.shared.generated.resources.ic_search
 import smartsell.shared.generated.resources.ic_shopping_cart
-import smartsell.shared.generated.resources.ic_shopping_cart_image
 import smartsell.shared.generated.resources.ic_unlock
 import smartsell.shared.generated.resources.ic_user
 import smartsell.shared.generated.resources.ic_vertical_menu
 import smartsell.shared.generated.resources.ic_warning
 import smartsell.shared.generated.resources.ic_weight
-import smartsell.shared.generated.resources.logo_google
-import smartsell.shared.generated.resources.logo_paypal
 
-object Resources {
+object AppIcon {
     object Icon {
         val Plus = Res.drawable.ic_plus
         val Minus = Res.drawable.ic_minus
@@ -55,13 +50,5 @@ object Resources {
         val Delete = Res.drawable.ic_delete
         val Warning = Res.drawable.ic_warning
         val Weight = Res.drawable.ic_weight
-    }
-
-    object Image {
-        val ShoppingCart = Res.drawable.ic_shopping_cart_image
-        val Checkmark = Res.drawable.ic_checkmark_image
-        val Cat = Res.drawable.ic_cat
-        val GoogleLogo = Res.drawable.logo_google
-        val PaypalLogo = Res.drawable.logo_paypal
     }
 }

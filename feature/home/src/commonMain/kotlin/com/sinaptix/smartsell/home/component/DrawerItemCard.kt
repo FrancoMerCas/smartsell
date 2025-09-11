@@ -15,9 +15,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import com.sinaptix.smartsell.home.domain.DrawerItem
-import com.sinaptix.smartsell.shared.FontSize.EXTRA_REGULAR
-import com.sinaptix.smartsell.shared.IconPrimary
-import com.sinaptix.smartsell.shared.TextPrimary
+import com.sinaptix.smartsell.home.domain.getTitle
+import com.sinaptix.smartsell.shared.resources.AppStrings
+import com.sinaptix.smartsell.shared.resources.FontSize.EXTRA_REGULAR
+import com.sinaptix.smartsell.shared.resources.IconPrimary
+import com.sinaptix.smartsell.shared.resources.TextPrimary
+import com.sinaptix.smartsell.shared.util.asStringRes
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
@@ -38,14 +41,14 @@ fun DrawerItemCard(
     ) {
         Icon(
             painter = painterResource(drawerItem.icon),
-            contentDescription = "Drawer icon",
+            contentDescription = AppStrings.Descriptions.descriptIconDrawerIcon.asStringRes(),
             tint = IconPrimary
         )
         Spacer(
             modifier = Modifier.width(12.dp)
         )
         Text(
-            text = drawerItem.title,
+            text = drawerItem.getTitle(),
             color = TextPrimary,
             fontSize = EXTRA_REGULAR
         )

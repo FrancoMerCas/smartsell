@@ -1,0 +1,87 @@
+package com.sinaptix.smartsell.shared.resources
+
+import smartsell.shared.generated.resources.Res
+import smartsell.shared.generated.resources.app_name
+import smartsell.shared.generated.resources.app_name_first
+import smartsell.shared.generated.resources.app_name_phrase
+import smartsell.shared.generated.resources.app_name_second
+import smartsell.shared.generated.resources.auth_continue
+import smartsell.shared.generated.resources.auth_logging_in_google
+import smartsell.shared.generated.resources.auth_success
+import smartsell.shared.generated.resources.auth_waith
+import smartsell.shared.generated.resources.descript_icon_back_arrow
+import smartsell.shared.generated.resources.descript_icon_close
+import smartsell.shared.generated.resources.descript_icon_drawer_icon
+import smartsell.shared.generated.resources.descript_icon_google_logo
+import smartsell.shared.generated.resources.descript_icon_menu
+import smartsell.shared.generated.resources.error_network
+import smartsell.shared.generated.resources.error_not_connection
+import smartsell.shared.generated.resources.error_not_firebase_token
+import smartsell.shared.generated.resources.error_signin_cancel
+import smartsell.shared.generated.resources.error_unknow
+import smartsell.shared.generated.resources.nav_admin_panel
+import smartsell.shared.generated.resources.nav_blog
+import smartsell.shared.generated.resources.nav_categories
+import smartsell.shared.generated.resources.nav_contact
+import smartsell.shared.generated.resources.nav_home
+import smartsell.shared.generated.resources.nav_location
+import smartsell.shared.generated.resources.nav_products
+import smartsell.shared.generated.resources.nav_profile
+import smartsell.shared.generated.resources.nav_sales
+import smartsell.shared.generated.resources.nav_settings
+import smartsell.shared.generated.resources.nav_sign_out
+import smartsell.shared.generated.resources.title_cart
+import smartsell.shared.generated.resources.title_categories
+import smartsell.shared.generated.resources.title_home
+
+object AppStrings {
+    object AppName {
+        val appName = Res.string.app_name
+        val appNameFirst = Res.string.app_name_first
+        val appNameSecond = Res.string.app_name_second
+        val appNamePhrase = Res.string.app_name_phrase
+    }
+
+    object Navigation {
+        val home = Res.string.nav_home
+        val products = Res.string.nav_products
+        val sales = Res.string.nav_sales
+        val profile = Res.string.nav_profile
+        val settings = Res.string.nav_settings
+        val categories = Res.string.nav_categories
+        val blog = Res.string.nav_blog
+        val location = Res.string.nav_location
+        val contact = Res.string.nav_contact
+        val signOut = Res.string.nav_sign_out
+        val adminPanel = Res.string.nav_admin_panel
+    }
+
+    object Auth {
+        val authSuccess = Res.string.auth_success
+        val authLoggingInGoogle = Res.string.auth_logging_in_google
+        val authWaith = Res.string.auth_waith
+        val authContinue = Res.string.auth_continue
+    }
+
+    object Titles {
+        val titleHome = Res.string.title_home
+        val titleCategorie = Res.string.title_categories
+        val titleCart = Res.string.title_cart
+    }
+
+    object Descriptions {
+        val descriptIconClose = Res.string.descript_icon_close
+        val descriptIconMenu = Res.string.descript_icon_menu
+        val descriptIconBackArrow = Res.string.descript_icon_back_arrow
+        val descriptIconDrawerIcon = Res.string.descript_icon_drawer_icon
+        val descriptIconGoogleLogo = Res.string.descript_icon_google_logo
+    }
+
+    object Errors {
+        val errorNetwork = Res.string.error_network
+        val errorNotConnection = Res.string.error_not_connection
+        val errorNotFirebaseToken = Res.string.error_not_firebase_token
+        val errorSigninCancel = Res.string.error_signin_cancel
+        val errorUnknow  = Res.string.error_unknow
+    }
+}

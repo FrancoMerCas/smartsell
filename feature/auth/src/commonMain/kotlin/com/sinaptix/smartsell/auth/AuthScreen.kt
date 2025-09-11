@@ -24,19 +24,22 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.mmk.kmpauth.firebase.google.GoogleButtonUiContainerFirebase
 import com.sinaptix.smartsell.auth.component.GoogleButton
-import com.sinaptix.smartsell.shared.Alpha
-import com.sinaptix.smartsell.shared.FontSize.EXTRA_LARGE
-import com.sinaptix.smartsell.shared.FontSize.EXTRA_REGULAR
-import com.sinaptix.smartsell.shared.MadaBoldFont
-import com.sinaptix.smartsell.shared.MadaRegularFont
-import com.sinaptix.smartsell.shared.SurfaceBrand
-import com.sinaptix.smartsell.shared.SurfaceError
-import com.sinaptix.smartsell.shared.TextCreme
-import com.sinaptix.smartsell.shared.TextPrimary
-import com.sinaptix.smartsell.shared.TextSecondary
-import com.sinaptix.smartsell.shared.TextWhite
+import com.sinaptix.smartsell.shared.resources.Alpha
+import com.sinaptix.smartsell.shared.resources.AppStrings
+import com.sinaptix.smartsell.shared.resources.FontSize.EXTRA_LARGE
+import com.sinaptix.smartsell.shared.resources.FontSize.EXTRA_REGULAR
+import com.sinaptix.smartsell.shared.resources.MadaBoldFont
+import com.sinaptix.smartsell.shared.resources.MadaRegularFont
+import com.sinaptix.smartsell.shared.resources.SurfaceBrand
+import com.sinaptix.smartsell.shared.resources.SurfaceError
+import com.sinaptix.smartsell.shared.resources.TextCreme
+import com.sinaptix.smartsell.shared.resources.TextPrimary
+import com.sinaptix.smartsell.shared.resources.TextSecondary
+import com.sinaptix.smartsell.shared.resources.TextWhite
+import com.sinaptix.smartsell.shared.util.asStringRes
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 import rememberMessageBarState
 
@@ -48,6 +51,11 @@ fun AuthScreen(
     val viewModel = koinViewModel<AuthViewModel>()
     val messageBarState = rememberMessageBarState()
     var loadingState by remember { mutableStateOf(false) }
+
+    val authSuccessMessage = stringResource(AppStrings.Auth.authSuccess)
+    val networkErrorMessage = stringResource(AppStrings.Errors.errorNotConnection)
+    val signInCanceledMessage = stringResource(AppStrings.Errors.errorSigninCancel)
+    val unknownErrorMessage = stringResource(AppStrings.Errors.errorUnknow)
 
     Scaffold { padding ->
         ContentWithMessageBar(
@@ -78,10 +86,10 @@ fun AuthScreen(
                         modifier = Modifier.fillMaxWidth(),
                         text = buildAnnotatedString {
                             withStyle(style = SpanStyle(color = TextSecondary)) {
-                                append("Smart")
+                                append(AppStrings.AppName.appNameFirst.asStringRes())
                             }
                             withStyle(style = SpanStyle(color = TextCreme)) {
-                                append("Sell")
+                                append(AppStrings.AppName.appNameSecond.asStringRes())
                             }
                         },
                         textAlign = TextAlign.Center,
@@ -92,7 +100,7 @@ fun AuthScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .alpha(Alpha.HALF),
-                        text = "Sign in to continue",
+                        text = AppStrings.Auth.authContinue.asStringRes(),
                         textAlign = TextAlign.Center,
                         fontFamily = MadaRegularFont(),
                         fontSize = EXTRA_REGULAR,
@@ -107,7 +115,7 @@ fun AuthScreen(
                                 user = firebaseUser,
                                 onSuccess = {
                                     scope.launch {
-                                        messageBarState.addSuccess("Authentication successful!")
+                                        messageBarState.addSuccess(authSuccessMessage)
                                         delay(2000)
                                         navigateToHome()
                                     }
@@ -119,13 +127,12 @@ fun AuthScreen(
                             loadingState = false
                         }
                         result.onFailure { error ->
-                            if (error.message?.contains("A network error") == true) {
-                                messageBarState.addError("Internet connection unavailable")
-                            } else if (error.message?.contains("IdToken is null") == true) {
-                                messageBarState.addError("Sign in canceled")
-                            } else {
-                                messageBarState.addError(error.message ?: "Unknown error")
+                            val message = when {
+                                error.message?.contains("A network error") == true -> networkErrorMessage
+                                error.message?.contains("IdToken is null") == true -> signInCanceledMessage
+                                else -> error.message ?: unknownErrorMessage
                             }
+                            messageBarState.addError(message)
 
                             loadingState = false
                         }
@@ -142,91 +149,4 @@ fun AuthScreen(
             }
         }
     }
-    /*val scope = rememberCoroutineScope()
-    val viewModel = koinViewModel<AuthViewModel>()
-    val messageBarState = rememberMessageBarState()
-    var loadingState by remember { mutableStateOf(false) }*/
-
-    /*Scaffold { padding ->
-        ContentWithMessageBar(
-            contentBackgroundColor = Surface,
-            modifier = Modifier
-                .padding(
-                    top = padding.calculateTopPadding(),
-                    bottom = padding.calculateBottomPadding()
-                ),
-            messageBarState = messageBarState,
-            errorMaxLines = 2,
-            errorContainerColor = SurfaceError,
-            errorContentColor = TextWhite,
-            successContainerColor = SurfaceBrand,
-            successContentColor = TextPrimary
-        ) {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(all = 24.dp)
-            ) {
-                Column(
-                    modifier = Modifier.weight(1f),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text(
-                        modifier = Modifier.fillMaxWidth(),
-                        text = "NUTRISPORT",
-                        textAlign = TextAlign.Center,
-                        fontFamily = BebasNeueFont(),
-                        fontSize = FontSize.EXTRA_LARGE,
-                        color = TextSecondary
-                    )
-                    Text(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .alpha(Alpha.HALF),
-                        text = "Sign in to continue",
-                        textAlign = TextAlign.Center,
-                        fontSize = FontSize.EXTRA_REGULAR,
-                        color = TextPrimary
-                    )
-                }
-                GoogleButtonUiContainerFirebase(
-                    linkAccount = false,
-                    onResult = { result ->
-                        result.onSuccess { user ->
-                            viewModel.createCustomer(
-                                user = user,
-                                onSuccess = {
-                                    scope.launch {
-                                        messageBarState.addSuccess("Authentication successful!")
-                                        delay(2000)
-                                        navigateToHome()
-                                    }
-                                },
-                                onError = { message -> messageBarState.addError(message) }
-                            )
-                            loadingState = false
-                        }.onFailure { error ->
-                            if (error.message?.contains("A network error") == true) {
-                                messageBarState.addError("Internet connection unavailable.")
-                            } else if (error.message?.contains("Idtoken is null") == true) {
-                                messageBarState.addError("Sign in canceled.")
-                            } else {
-                                messageBarState.addError(error.message ?: "Unknown")
-                            }
-                            loadingState = false
-                        }
-                    }
-                ) {
-                    GoogleButton(
-                        loading = loadingState,
-                        onClick = {
-                            loadingState = true
-                            this@GoogleButtonUiContainerFirebase.onClick()
-                        }
-                    )
-                }
-            }
-        }
-    }*/
 }
