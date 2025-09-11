@@ -17,12 +17,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.unit.dp
 import com.sinaptix.smartsell.home.domain.BottomBarDestination
-import com.sinaptix.smartsell.shared.IconPrimary
-import com.sinaptix.smartsell.shared.IconSecondary
-import com.sinaptix.smartsell.shared.SurfaceGreenLighter
-import com.sinaptix.smartsell.shared.TabIndicator
-import com.sinaptix.smartsell.shared.TabSelected
-import com.sinaptix.smartsell.shared.TabUnselected
+import com.sinaptix.smartsell.shared.resources.SurfaceGreenLighter
+import com.sinaptix.smartsell.shared.resources.TabIndicator
+import com.sinaptix.smartsell.shared.resources.TabUnselected
 import org.jetbrains.compose.resources.painterResource
 
 @Composable

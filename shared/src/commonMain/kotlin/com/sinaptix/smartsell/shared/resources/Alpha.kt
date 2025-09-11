@@ -1,4 +1,4 @@
-package com.sinaptix.smartsell.shared
+package com.sinaptix.smartsell.shared.resources
 
 object Alpha {
     const val FULL = 1f
@@ -7,4 +7,5 @@ object Alpha {
     const val TEN_PERCENT = 0.1f
     const val TWENTY_PERCENT = 0.2f
     const val ZERO = 0.0f
+    const val EIGHTY = 0.8F
 }

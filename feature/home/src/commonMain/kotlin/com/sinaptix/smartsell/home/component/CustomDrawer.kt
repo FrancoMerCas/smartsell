@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -16,12 +15,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.sinaptix.smartsell.home.domain.DrawerItem
-import com.sinaptix.smartsell.shared.FontSize.EXTRA_LARGE
-import com.sinaptix.smartsell.shared.FontSize.REGULAR
-import com.sinaptix.smartsell.shared.MadaBlackFont
-import com.sinaptix.smartsell.shared.TextCreme
-import com.sinaptix.smartsell.shared.TextPrimary
-import com.sinaptix.smartsell.shared.TextSecondary
+import com.sinaptix.smartsell.shared.resources.AppStrings
+import com.sinaptix.smartsell.shared.resources.FontSize.EXTRA_LARGE
+import com.sinaptix.smartsell.shared.resources.FontSize.REGULAR
+import com.sinaptix.smartsell.shared.resources.MadaBlackFont
+import com.sinaptix.smartsell.shared.resources.TextCreme
+import com.sinaptix.smartsell.shared.resources.TextPrimary
+import com.sinaptix.smartsell.shared.resources.TextSecondary
+import com.sinaptix.smartsell.shared.util.asStringRes
 
 @Composable
 fun CustomDrawer(
@@ -41,10 +42,10 @@ fun CustomDrawer(
             modifier = Modifier.fillMaxWidth(),
             text = buildAnnotatedString {
                 withStyle(style = SpanStyle(color = TextSecondary)) {
-                    append("Smart")
+                    append(AppStrings.AppName.appNameFirst.asStringRes())
                 }
                 withStyle(style = SpanStyle(color = TextCreme)) {
-                    append("Sell")
+                    append(AppStrings.AppName.appNameSecond.asStringRes())
                 }
             },
             textAlign = TextAlign.Center,
@@ -53,7 +54,7 @@ fun CustomDrawer(
         )
         Text(
             modifier = Modifier.fillMaxWidth(),
-            text = "Intelligent Sells",
+            text = AppStrings.AppName.appNamePhrase.asStringRes(),
             textAlign = TextAlign.Center,
             fontSize = REGULAR,
             color = TextPrimary

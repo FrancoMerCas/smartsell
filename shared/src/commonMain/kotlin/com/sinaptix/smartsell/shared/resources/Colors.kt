@@ -1,4 +1,4 @@
-package com.sinaptix.smartsell.shared
+package com.sinaptix.smartsell.shared.resources
 
 import androidx.compose.ui.graphics.Color
 

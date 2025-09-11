@@ -28,12 +28,15 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
-import com.sinaptix.smartsell.shared.BorderIdle
-import com.sinaptix.smartsell.shared.ButtonPrimary
-import com.sinaptix.smartsell.shared.FontSize
-import com.sinaptix.smartsell.shared.IconSecondary
-import com.sinaptix.smartsell.shared.Resources
-import com.sinaptix.smartsell.shared.TextCreme
+import com.sinaptix.smartsell.shared.resources.AppIcon
+import com.sinaptix.smartsell.shared.resources.AppImage
+import com.sinaptix.smartsell.shared.resources.AppStrings
+import com.sinaptix.smartsell.shared.resources.BorderIdle
+import com.sinaptix.smartsell.shared.resources.ButtonPrimary
+import com.sinaptix.smartsell.shared.resources.FontSize
+import com.sinaptix.smartsell.shared.resources.IconSecondary
+import com.sinaptix.smartsell.shared.resources.TextCreme
+import com.sinaptix.smartsell.shared.util.asStringRes
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 
@@ -41,9 +44,9 @@ import org.jetbrains.compose.resources.painterResource
 fun GoogleButton(
     modifier: Modifier = Modifier,
     loading: Boolean = false,
-    primaryText: String = "Sign in with Google",
-    secondaryText: String = "Please wait...",
-    icon: DrawableResource = Resources.Image.GoogleLogo,
+    primaryText: String = AppStrings.Auth.authLoggingInGoogle.asStringRes(),
+    secondaryText: String = AppStrings.Auth.authWaith.asStringRes(),
+    icon: DrawableResource = AppImage.Image.GoogleLogo,
     shape: Shape = RoundedCornerShape(size = 99.dp),
     backgroundColor: Color = ButtonPrimary,
     borderColor: Color = BorderIdle,
@@ -81,7 +84,7 @@ fun GoogleButton(
                 if (!loadingState) {
                     Icon(
                         painter = painterResource(icon),
-                        contentDescription = "Google Logo",
+                        contentDescription = AppStrings.Descriptions.descriptIconGoogleLogo.asStringRes(),
                         tint = Color.Unspecified
                     )
                 } else {

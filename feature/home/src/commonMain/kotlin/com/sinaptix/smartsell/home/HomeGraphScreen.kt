@@ -28,6 +28,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
@@ -43,16 +44,18 @@ import com.sinaptix.smartsell.home.domain.BottomBarDestination
 import com.sinaptix.smartsell.home.domain.CustomDrawerState
 import com.sinaptix.smartsell.home.utils.isOpened
 import com.sinaptix.smartsell.home.utils.opposite
-import com.sinaptix.smartsell.shared.Alpha
-import com.sinaptix.smartsell.shared.FontSize
-import com.sinaptix.smartsell.shared.IconPrimary
-import com.sinaptix.smartsell.shared.MadaVariableWghtFont
-import com.sinaptix.smartsell.shared.Resources
-import com.sinaptix.smartsell.shared.Surface
-import com.sinaptix.smartsell.shared.SurfaceGreenLighter
-import com.sinaptix.smartsell.shared.SurfaceLighter
-import com.sinaptix.smartsell.shared.TextPrimary
+import com.sinaptix.smartsell.shared.resources.Alpha
+import com.sinaptix.smartsell.shared.resources.FontSize
+import com.sinaptix.smartsell.shared.resources.IconPrimary
+import com.sinaptix.smartsell.shared.resources.MadaVariableWghtFont
+import com.sinaptix.smartsell.shared.resources.Surface
+import com.sinaptix.smartsell.shared.resources.SurfaceGreenLighter
+import com.sinaptix.smartsell.shared.resources.TextPrimary
 import com.sinaptix.smartsell.shared.navigation.Screen
+import com.sinaptix.smartsell.shared.resources.AppIcon
+import com.sinaptix.smartsell.shared.resources.AppStrings
+import com.sinaptix.smartsell.shared.resources.CategoryBlue
+import com.sinaptix.smartsell.shared.util.asStringRes
 import com.sinaptix.smartsell.shared.util.getScreenWidth
 
 import org.jetbrains.compose.resources.painterResource
@@ -87,14 +90,19 @@ fun HomeGraphScreen(
         targetValue = if (drawerState.isOpened()) offsetValue else 0.dp
     )
     val animatedBackGround by animateColorAsState(
-        targetValue = if (drawerState.isOpened()) SurfaceLighter else Surface
+        targetValue = if (drawerState.isOpened()) CategoryBlue else Surface
     )
     val animatedScale by animateFloatAsState(
-        targetValue = if (drawerState.isOpened()) 0.85f else 1f
+        targetValue = if (drawerState.isOpened()) 0.9f else 1f
     )
     val animatedRadious by animateDpAsState(
-        targetValue = if (drawerState.isOpened()) 20.dp else 0.dp
+        targetValue = if (drawerState.isOpened()) 40.dp else 0.dp
     )
+
+    val animatedAlpha by animateFloatAsState(
+        targetValue = if (drawerState.isOpened()) Alpha.EIGHTY else Alpha.FULL
+    )
+
     val viewModel = koinViewModel<HomeGraphViewModel>()
     val messageBarState = rememberMessageBarState()
 
@@ -123,6 +131,7 @@ fun HomeGraphScreen(
                 .clip(RoundedCornerShape(size = animatedRadious))
                 .offset(x = animatedOffset)
                 .scale(scale = animatedScale)
+                .alpha(alpha = animatedAlpha)
                 .shadow(
                     elevation = 20.dp,
                     shape = RoundedCornerShape(size = animatedRadious),
@@ -155,9 +164,9 @@ fun HomeGraphScreen(
                                         onClick = { drawerState = drawerState.opposite() }
                                     ) {
                                         Icon(
-                                            painter = painterResource(Resources.Icon.Close),
-                                            contentDescription = "Close Icon",
-                                            tint = IconPrimary
+                                            painter = painterResource(AppIcon.Icon.BackArrow),
+                                            contentDescription = AppStrings.Descriptions.descriptIconBackArrow.asStringRes(),
+                                            tint = IconPrimary,
                                         )
                                     }
                                 } else {
@@ -165,8 +174,8 @@ fun HomeGraphScreen(
                                         onClick = { drawerState = drawerState.opposite() }
                                     ) {
                                         Icon(
-                                            painter = painterResource(Resources.Icon.Menu),
-                                            contentDescription = "Menu Icon",
+                                            painter = painterResource(AppIcon.Icon.Menu),
+                                            contentDescription = AppStrings.Descriptions.descriptIconMenu.asStringRes(),
                                             tint = IconPrimary
                                         )
                                     }

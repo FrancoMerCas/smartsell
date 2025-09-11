@@ -1,0 +1,46 @@
+<resources>
+    <!-- App General -->
+    <string name="app_name">SmartSell</string>
+    <string name="app_name_first">Smart</string>
+    <string name="app_name_second">Sell</string>
+    <string name="app_name_phrase">Ventas Inteligentes</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">Inicio</string>
+    <string name="nav_products">Productos</string>
+    <string name="nav_sales">Ventas</string>
+    <string name="nav_profile">Perfil</string>
+    <string name="nav_settings">Configuración</string>
+    <string name="nav_cart">Carrito</string>
+    <string name="nav_categories">Categorias</string>
+    <string name="nav_blog">Blog</string>
+    <string name="nav_location">Ubicacion</string>
+    <string name="nav_contact">Contactanos</string>
+    <string name="nav_sign_out">Salir</string>
+    <string name="nav_admin_panel">Panel Admin</string>
+
+    <!-- Auth -->
+    <string name="auth_logging_in_google">Iniciando sesion con Google</string>
+    <string name="auth_waith">Por favor espere...</string>
+    <string name="auth_continue">Sign in to continue</string>
+    <string name="auth_success">Autenticación exitosa!</string>
+
+    <!-- Titles -->
+    <string name="title_home">Inicio</string>
+    <string name="title_categories">Categorias</string>
+    <string name="title_cart">Carrito</string>
+
+    <!-- Descriptions -->
+    <string name="descript_icon_close">Icono cerrar</string>
+    <string name="descript_icon_menu">Icono menu</string>
+    <string name="descript_icon_back_arrow">Icono Flecha atras</string>
+    <string name="descript_icon_drawer_icon">Icono Drawer</string>
+    <string name="descript_icon_google_logo">Google logo</string>
+
+    <!-- Errors -->
+    <string name="error_network">A network error</string>
+    <string name="error_not_connection">Conexión deshabilitada</string>
+    <string name="error_not_firebase_token">IdToken is null</string>
+    <string name="error_signin_cancel">Inicio de sesión cancelado</string>
+    <string name="error_unknow">Error desconocido</string>
+</resources>
