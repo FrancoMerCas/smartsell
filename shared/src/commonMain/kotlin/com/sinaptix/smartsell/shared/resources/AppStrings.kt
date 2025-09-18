@@ -11,10 +11,12 @@ import smartsell.shared.generated.resources.auth_success
 import smartsell.shared.generated.resources.auth_waith
 import smartsell.shared.generated.resources.descript_icon_back_arrow
 import smartsell.shared.generated.resources.descript_icon_button
+import smartsell.shared.generated.resources.descript_icon_checkmark
 import smartsell.shared.generated.resources.descript_icon_close
 import smartsell.shared.generated.resources.descript_icon_drawer_icon
 import smartsell.shared.generated.resources.descript_icon_google_logo
 import smartsell.shared.generated.resources.descript_icon_menu
+import smartsell.shared.generated.resources.descript_img_flag
 import smartsell.shared.generated.resources.error_network
 import smartsell.shared.generated.resources.error_not_connection
 import smartsell.shared.generated.resources.error_not_firebase_token
@@ -31,8 +33,12 @@ import smartsell.shared.generated.resources.nav_profile
 import smartsell.shared.generated.resources.nav_sales
 import smartsell.shared.generated.resources.nav_settings
 import smartsell.shared.generated.resources.nav_sign_out
+import smartsell.shared.generated.resources.pick_alert_button_cancel
+import smartsell.shared.generated.resources.pick_alert_button_confirm
+import smartsell.shared.generated.resources.pick_alert_title
 import smartsell.shared.generated.resources.placeholder_address
 import smartsell.shared.generated.resources.placeholder_city
+import smartsell.shared.generated.resources.placeholder_dial_code
 import smartsell.shared.generated.resources.placeholder_email
 import smartsell.shared.generated.resources.placeholder_firstname
 import smartsell.shared.generated.resources.placeholder_lastname
@@ -84,6 +90,8 @@ object AppStrings {
         val descriptIconDrawerIcon = Res.string.descript_icon_drawer_icon
         val descriptIconGoogleLogo = Res.string.descript_icon_google_logo
         val descriptIconButton = Res.string.descript_icon_button
+        val descriptIconCheckmark = Res.string.descript_icon_checkmark
+        val descriptImgFlag = Res.string.descript_img_flag
     }
 
     object Errors {
@@ -102,5 +110,12 @@ object AppStrings {
         val placeholderZip = Res.string.placeholder_zip
         val placeholderAddress = Res.string.placeholder_address
         val placeholderPhoneNumber = Res.string.placeholder_phone_number
+        val placeholderDialCode = Res.string.placeholder_dial_code
+    }
+
+    object PickAlert {
+        val pickAlertTitle = Res.string.pick_alert_title
+        val pickAlertButtonConfirm = Res.string.pick_alert_button_confirm
+        val pickAlertButtonCancel = Res.string.pick_alert_button_cancel
     }
 }

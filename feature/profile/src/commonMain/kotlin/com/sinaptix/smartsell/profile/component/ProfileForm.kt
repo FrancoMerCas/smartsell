@@ -11,6 +11,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.sinaptix.smartsell.shared.components.CustomeTextField
+import com.sinaptix.smartsell.shared.components.dialog.CuntryPickerDialog
+import com.sinaptix.smartsell.shared.domain.Country
 import com.sinaptix.smartsell.shared.resources.AppStrings
 import com.sinaptix.smartsell.shared.util.asStringRes
 
@@ -31,6 +33,11 @@ fun ProfileForm(
     phoneNumber: String?,
     onPhoneNumberChange: (String) -> Unit
 ) {
+    CuntryPickerDialog(
+        country = Country.Mexico,
+        onDismiss = {},
+        onConfirmClick = {}
+    )
     Column(
         modifier = modifier
             .fillMaxSize()

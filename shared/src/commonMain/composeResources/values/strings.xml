@@ -38,6 +38,8 @@
     <string name="descript_icon_drawer_icon">Icono Drawer</string>
     <string name="descript_icon_google_logo">Icono Google logo</string>
     <string name="descript_icon_button">Icono de boton</string>
+    <string name="descript_icon_checkmark">Icono de check</string>
+    <string name="descript_img_flag">Imagen de bandera de país</string>
 
     <!-- Errors -->
     <string name="error_network">A network error</string>
@@ -55,4 +57,10 @@
     <string name="placeholder_zip">Codigo Postal</string>
     <string name="placeholder_address">Dirección</string>
     <string name="placeholder_phone_number">Numero de teléfono</string>
+    <string name="placeholder_dial_code">Código de marcación</string>
+
+    <!-- Pick Country Alert -->
+    <string name="pick_alert_title">Selecciona un pais</string>
+    <string name="pick_alert_button_confirm">Confirmar</string>
+    <string name="pick_alert_button_cancel">Cancelar</string>
 </resources>
