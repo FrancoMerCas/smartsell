@@ -37,6 +37,8 @@
     <string name="descript_icon_drawer_icon">Drawer icon</string>
     <string name="descript_icon_google_logo">Google logo icon</string>
     <string name="descript_icon_button">Button icon</string>
+    <string name="descript_icon_checkmark">Checkmark Icon</string>
+    <string name="descript_img_flag">Country flag image</string>
 
     <!-- Errors -->
     <string name="error_network">A network error</string>
@@ -53,4 +55,10 @@
     <string name="placeholder_zip">ZIP</string>
     <string name="placeholder_address">Address</string>
     <string name="placeholder_phone_number">Phone number</string>
+    <string name="placeholder_dial_code">Dial code</string>
+
+    <!-- Pick Country Alert -->
+    <string name="pick_alert_title">Pick a Country</string>
+    <string name="pick_alert_button_confirm">Confirm</string>
+    <string name="pick_alert_button_cancel">Cancel</string>
 </resources>

@@ -8,6 +8,10 @@ import smartsell.shared.generated.resources.ic_close
 import smartsell.shared.generated.resources.ic_delete
 import smartsell.shared.generated.resources.ic_dollar
 import smartsell.shared.generated.resources.ic_edit
+import smartsell.shared.generated.resources.ic_flag_india
+import smartsell.shared.generated.resources.ic_flag_mexico
+import smartsell.shared.generated.resources.ic_flag_serbia
+import smartsell.shared.generated.resources.ic_flag_usa
 import smartsell.shared.generated.resources.ic_grid
 import smartsell.shared.generated.resources.ic_home
 import smartsell.shared.generated.resources.ic_log_in
@@ -50,5 +54,12 @@ object AppIcon {
         val Delete = Res.drawable.ic_delete
         val Warning = Res.drawable.ic_warning
         val Weight = Res.drawable.ic_weight
+    }
+
+    object Flag {
+        val MexFlag = Res.drawable.ic_flag_mexico
+        val UsaFlag = Res.drawable.ic_flag_usa
+        val SerbiaFlag = Res.drawable.ic_flag_serbia
+        val IndiaFlag = Res.drawable.ic_flag_india
     }
 }
