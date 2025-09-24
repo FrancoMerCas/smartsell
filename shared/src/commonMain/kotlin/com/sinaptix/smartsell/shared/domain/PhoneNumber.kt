@@ -4,6 +4,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class PhoneNumber(
-    val dialCode: Int,
+    val dialCode: Int = 0,
     val number: String
 )

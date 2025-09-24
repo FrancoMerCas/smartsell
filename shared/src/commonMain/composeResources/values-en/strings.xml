@@ -29,6 +29,7 @@
     <string name="title_home">Home</string>
     <string name="title_categories">Categories</string>
     <string name="title_cart">Cart</string>
+    <string name="title_my_profile">MY PROFILE</string>
 
     <!-- Descriptions -->
     <string name="descript_icon_close">Close icon</string>
@@ -39,6 +40,7 @@
     <string name="descript_icon_button">Button icon</string>
     <string name="descript_icon_checkmark">Checkmark Icon</string>
     <string name="descript_img_flag">Country flag image</string>
+    <string name="descript_icon_error">Error Image</string>
 
     <!-- Errors -->
     <string name="error_network">A network error</string>
@@ -46,6 +48,13 @@
     <string name="error_not_firebase_token">IdToken is null</string>
     <string name="error_signin_cancel">Sign in canceled</string>
     <string name="error_unknow">Unknow Error</string>
+    <string name="error_dial_code_not_found">Dial code not found</string>
+    <string name="error_user_not_found">User not found</string>
+    <string name="error_user_unavailable">User is not available</string>
+    <string name="error_generic">Oops!</string>
+
+    <!-- Advices -->
+    <string name="advice_update_success">Actualizado satisfactoriamente!</string>
 
     <!-- PlaceHolders -->
     <string name="placeholder_firstname">First name</string>
@@ -61,4 +70,7 @@
     <string name="pick_alert_title">Pick a Country</string>
     <string name="pick_alert_button_confirm">Confirm</string>
     <string name="pick_alert_button_cancel">Cancel</string>
+
+    <!-- Buttons -->
+    <string name="button_update">Update</string>
 </resources>

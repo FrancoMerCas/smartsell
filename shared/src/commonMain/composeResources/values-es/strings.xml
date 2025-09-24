@@ -29,6 +29,7 @@
     <string name="title_home">Inicio</string>
     <string name="title_categories">Categorias</string>
     <string name="title_cart">Carrito</string>
+    <string name="title_my_profile">MI PERFIL</string>
 
     <!-- Descriptions -->
     <string name="descript_icon_close">Icono cerrar</string>
@@ -39,6 +40,7 @@
     <string name="descript_icon_button">Icono de boton</string>
     <string name="descript_icon_checkmark">Icono de check</string>
     <string name="descript_img_flag">Imagen de bandera de país</string>
+    <string name="descript_icon_error">Imagen error</string>
 
     <!-- Errors -->
     <string name="error_network">A network error</string>
@@ -46,6 +48,13 @@
     <string name="error_not_firebase_token">IdToken is null</string>
     <string name="error_signin_cancel">Inicio de sesión cancelado</string>
     <string name="error_unknow">Error desconocido</string>
+    <string name="error_dial_code_not_found">Codigo de marcación no encontrado</string>
+    <string name="error_user_not_found">Usuario no encontrado</string>
+    <string name="error_user_unavailable">Usuario no esta disponible</string>
+    <string name="error_generic">Oops!</string>
+
+    <!-- Advices -->
+    <string name="advice_update_success">Successfully updated!</string>
 
     <!-- PlaceHolders -->
     <string name="placeholder_firstname">Nombre</string>
@@ -61,4 +70,7 @@
     <string name="pick_alert_title">Selecciona un pais</string>
     <string name="pick_alert_button_confirm">Confirmar</string>
     <string name="pick_alert_button_cancel">Cancelar</string>
+
+    <!-- Buttons -->
+    <string name="button_update">Actulizar</string>
 </resources>

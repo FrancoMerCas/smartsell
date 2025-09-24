@@ -1,6 +1,7 @@
 package com.sinaptix.smartsell.shared.resources
 
 import smartsell.shared.generated.resources.Res
+import smartsell.shared.generated.resources.advice_update_success
 import smartsell.shared.generated.resources.app_name
 import smartsell.shared.generated.resources.app_name_first
 import smartsell.shared.generated.resources.app_name_phrase
@@ -9,19 +10,25 @@ import smartsell.shared.generated.resources.auth_continue
 import smartsell.shared.generated.resources.auth_logging_in_google
 import smartsell.shared.generated.resources.auth_success
 import smartsell.shared.generated.resources.auth_waith
+import smartsell.shared.generated.resources.button_update
 import smartsell.shared.generated.resources.descript_icon_back_arrow
 import smartsell.shared.generated.resources.descript_icon_button
 import smartsell.shared.generated.resources.descript_icon_checkmark
 import smartsell.shared.generated.resources.descript_icon_close
 import smartsell.shared.generated.resources.descript_icon_drawer_icon
+import smartsell.shared.generated.resources.descript_icon_error
 import smartsell.shared.generated.resources.descript_icon_google_logo
 import smartsell.shared.generated.resources.descript_icon_menu
 import smartsell.shared.generated.resources.descript_img_flag
+import smartsell.shared.generated.resources.error_dial_code_not_found
+import smartsell.shared.generated.resources.error_generic
 import smartsell.shared.generated.resources.error_network
 import smartsell.shared.generated.resources.error_not_connection
 import smartsell.shared.generated.resources.error_not_firebase_token
 import smartsell.shared.generated.resources.error_signin_cancel
 import smartsell.shared.generated.resources.error_unknow
+import smartsell.shared.generated.resources.error_user_not_found
+import smartsell.shared.generated.resources.error_user_unavailable
 import smartsell.shared.generated.resources.nav_admin_panel
 import smartsell.shared.generated.resources.nav_blog
 import smartsell.shared.generated.resources.nav_categories
@@ -47,6 +54,7 @@ import smartsell.shared.generated.resources.placeholder_zip
 import smartsell.shared.generated.resources.title_cart
 import smartsell.shared.generated.resources.title_categories
 import smartsell.shared.generated.resources.title_home
+import smartsell.shared.generated.resources.title_my_profile
 
 object AppStrings {
     object AppName {
@@ -81,6 +89,7 @@ object AppStrings {
         val titleHome = Res.string.title_home
         val titleCategorie = Res.string.title_categories
         val titleCart = Res.string.title_cart
+        val titleMyProfile = Res.string.title_my_profile
     }
 
     object Descriptions {
@@ -92,6 +101,7 @@ object AppStrings {
         val descriptIconButton = Res.string.descript_icon_button
         val descriptIconCheckmark = Res.string.descript_icon_checkmark
         val descriptImgFlag = Res.string.descript_img_flag
+        val descriptIconError = Res.string.descript_icon_error
     }
 
     object Errors {
@@ -99,7 +109,15 @@ object AppStrings {
         val errorNotConnection = Res.string.error_not_connection
         val errorNotFirebaseToken = Res.string.error_not_firebase_token
         val errorSigninCancel = Res.string.error_signin_cancel
-        val errorUnknow  = Res.string.error_unknow
+        val errorUnknow = Res.string.error_unknow
+        val errorDialCodeNotFound = Res.string.error_dial_code_not_found
+        val errorUserNotFound = Res.string.error_user_not_found
+        val errorUserUnavailable = Res.string.error_user_unavailable
+        val errorGeneric = Res.string.error_generic
+    }
+
+    object Advices {
+        val adviceUpdateSuccess = Res.string.advice_update_success
     }
 
     object PlaceHolder {
@@ -117,5 +135,9 @@ object AppStrings {
         val pickAlertTitle = Res.string.pick_alert_title
         val pickAlertButtonConfirm = Res.string.pick_alert_button_confirm
         val pickAlertButtonCancel = Res.string.pick_alert_button_cancel
+    }
+
+    object Buttons {
+        val buttonUpdate = Res.string.button_update
     }
 }

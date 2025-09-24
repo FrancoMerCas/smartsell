@@ -22,6 +22,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.sinaptix.smartsell.shared.components.CustomeCountryPicker
+import com.sinaptix.smartsell.shared.components.CustomeErrorCard
 import com.sinaptix.smartsell.shared.components.CustomeTextField
 import com.sinaptix.smartsell.shared.domain.Country
 import com.sinaptix.smartsell.shared.resources.Alpha
@@ -79,20 +80,27 @@ fun CuntryPickerDialog(
                     placeHolder = AppStrings.PlaceHolder.placeholderDialCode.asStringRes()
                 )
                 Spacer(modifier = Modifier.height(12.dp))
-                LazyColumn(
-                    modifier = Modifier.weight(1f),
-                    verticalArrangement = Arrangement.spacedBy(4.dp)
-                ) {
-                    items(
-                        items = filteredCountries,
-                        key = { it.ordinal }
-                    ) { country ->
-                        CustomeCountryPicker(
-                            country = country,
-                            isSelected = selectedCountry == country,
-                            onSelected = { selectedCountry = country }
-                        )
+                if (filteredCountries.isNotEmpty()) {
+                    LazyColumn(
+                        modifier = Modifier.weight(1f),
+                        verticalArrangement = Arrangement.spacedBy(4.dp)
+                    ) {
+                        items(
+                            items = filteredCountries,
+                            key = { it.ordinal }
+                        ) { country ->
+                            CustomeCountryPicker(
+                                country = country,
+                                isSelected = selectedCountry == country,
+                                onSelected = { selectedCountry = country }
+                            )
+                        }
                     }
+                } else {
+                    CustomeErrorCard(
+                        modifier = Modifier.weight(1f),
+                        message = AppStrings.Errors.errorDialCodeNotFound.asStringRes()
+                    )
                 }
             }
         },
