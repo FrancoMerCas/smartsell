@@ -31,6 +31,7 @@
     <string name="title_categories">Categorias</string>
     <string name="title_cart">Carrito</string>
     <string name="title_my_profile">MI PERFIL</string>
+    <string name="title_admin_panel">Panel Admin</string>
 
     <!-- Descriptions -->
     <string name="descript_icon_close">Icono cerrar</string>
@@ -42,6 +43,7 @@
     <string name="descript_icon_checkmark">Icono de check</string>
     <string name="descript_img_flag">Imagen de bandera de país</string>
     <string name="descript_icon_error">Imagen error</string>
+    <string name="descript_icon_add">Icono Agregar</string>
 
     <!-- Errors -->
     <string name="error_network">A network error</string>

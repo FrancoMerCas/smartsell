@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.sinaptix.smartsell.admin_panel.AdminPanelScreen
 import com.sinaptix.smartsell.auth.AuthScreen
 import com.sinaptix.smartsell.home.HomeGraphScreen
 import com.sinaptix.smartsell.profile.ProfileScreen
@@ -38,11 +39,21 @@ fun SetupNavGraph(
                 },
                 navigateToProfile = {
                     navController.navigate(Screen.Profile)
+                },
+                navigateToAdminPanel = {
+                    navController.navigate(Screen.AdminPanel)
                 }
             )
         }
         composable<Screen.Profile> {
             ProfileScreen(
+                navigateBack = {
+                    navController.navigateUp()
+                }
+            )
+        }
+        composable<Screen.AdminPanel> {
+            AdminPanelScreen(
                 navigateBack = {
                     navController.navigateUp()
                 }

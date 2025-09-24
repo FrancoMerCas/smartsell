@@ -30,6 +30,7 @@
     <string name="title_categories">Categories</string>
     <string name="title_cart">Cart</string>
     <string name="title_my_profile">MY PROFILE</string>
+    <string name="title_admin_panel">Admin Panel</string>
 
     <!-- Descriptions -->
     <string name="descript_icon_close">Close icon</string>
@@ -41,6 +42,7 @@
     <string name="descript_icon_checkmark">Checkmark Icon</string>
     <string name="descript_img_flag">Country flag image</string>
     <string name="descript_icon_error">Error Image</string>
+    <string name="descript_icon_add">Add Icon</string>
 
     <!-- Errors -->
     <string name="error_network">A network error</string>
