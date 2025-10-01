@@ -31,6 +31,8 @@
     <string name="title_cart">Cart</string>
     <string name="title_my_profile">MY PROFILE</string>
     <string name="title_admin_panel">Admin Panel</string>
+    <string name="title_manage_product_edit">Edit product</string>
+    <string name="title_manage_product_new">New product</string>
 
     <!-- Descriptions -->
     <string name="descript_icon_close">Close icon</string>

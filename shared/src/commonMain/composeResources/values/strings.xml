@@ -32,6 +32,8 @@
     <string name="title_cart">Carrito</string>
     <string name="title_my_profile">MI PERFIL</string>
     <string name="title_admin_panel">Panel Admin</string>
+    <string name="title_manage_product_edit">Editar producto</string>
+    <string name="title_manage_product_new">Nuevo producto</string>
 
     <!-- Descriptions -->
     <string name="descript_icon_close">Icono cerrar</string>

@@ -4,9 +4,11 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
 import com.sinaptix.smartsell.admin_panel.AdminPanelScreen
 import com.sinaptix.smartsell.auth.AuthScreen
 import com.sinaptix.smartsell.home.HomeGraphScreen
+import com.sinaptix.smartsell.manage_product.ManageProductScreen
 import com.sinaptix.smartsell.profile.ProfileScreen
 import com.sinaptix.smartsell.shared.navigation.Screen
 
@@ -54,6 +56,18 @@ fun SetupNavGraph(
         }
         composable<Screen.AdminPanel> {
             AdminPanelScreen(
+                navigateBack = {
+                    navController.navigateUp()
+                },
+                navigateToManage = { id ->
+                    navController.navigate(Screen.ManageProduct(id = id))
+                }
+            )
+        }
+        composable<Screen.ManageProduct> {
+            val id = it.toRoute<Screen.ManageProduct>().id
+            ManageProductScreen(
+                id = id,
                 navigateBack = {
                     navController.navigateUp()
                 }

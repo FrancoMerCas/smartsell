@@ -56,6 +56,8 @@ import smartsell.shared.generated.resources.title_admin_panel
 import smartsell.shared.generated.resources.title_cart
 import smartsell.shared.generated.resources.title_categories
 import smartsell.shared.generated.resources.title_home
+import smartsell.shared.generated.resources.title_manage_product_edit
+import smartsell.shared.generated.resources.title_manage_product_new
 import smartsell.shared.generated.resources.title_my_profile
 
 object AppStrings {
@@ -93,6 +95,8 @@ object AppStrings {
         val titleCart = Res.string.title_cart
         val titleMyProfile = Res.string.title_my_profile
         val titleAdminPanel = Res.string.title_admin_panel
+        val titleManageProductEdit = Res.string.title_manage_product_edit
+        val titleManageProductNew = Res.string.title_manage_product_new
     }
 
     object Descriptions {

@@ -1,5 +1,11 @@
 package com.sinaptix.smartsell.admin_panel
 
+import ContentWithMessageBar
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -9,6 +15,9 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import com.sinaptix.smartsell.shared.components.CustomeTextField
 import com.sinaptix.smartsell.shared.resources.AppIcon
 import com.sinaptix.smartsell.shared.resources.AppStrings
 import com.sinaptix.smartsell.shared.resources.ButtonPrimary
@@ -20,12 +29,16 @@ import com.sinaptix.smartsell.shared.resources.SurfaceGreenLighter
 import com.sinaptix.smartsell.shared.resources.TextPrimary
 import com.sinaptix.smartsell.shared.util.asStringRes
 import org.jetbrains.compose.resources.painterResource
+import rememberMessageBarState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AdminPanelScreen(
-    navigateBack: () -> Unit
+    navigateBack: () -> Unit,
+    navigateToManage: (String?) -> Unit
 ) {
+    val messageBarState = rememberMessageBarState()
+
     Scaffold(
         containerColor = Surface,
         topBar = {
@@ -71,7 +84,9 @@ fun AdminPanelScreen(
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = {},
+                onClick = {
+                    navigateToManage(null)
+                },
                 containerColor = ButtonPrimary,
                 contentColor = IconPrimary,
                 content = {
@@ -82,7 +97,7 @@ fun AdminPanelScreen(
                 }
             )
         }
-    ) {
+    ) { padding ->
 
     }
 }
