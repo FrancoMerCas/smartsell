@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p /Users/franco/StudioProjects/SynaptiX/SmartSell/data/src/commonMain/kotlin/com/sinaptix/smartsell/data/remote && mkdir -p /Users/franco/StudioProjects/SynaptiX/SmartSell/data/src/androidMain/kotlin/com/sinaptix/smartsell/data/remote && mkdir -p /Users/franco/StudioProjects/SynaptiX/SmartSell/data/src/iosMain/kotlin/com/sinaptix/smartsell/data/remote)"
+    ]
+  }
+}

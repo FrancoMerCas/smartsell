@@ -10,7 +10,6 @@ import com.sinaptix.smartsell.shared.domain.Country
 import com.sinaptix.smartsell.shared.domain.Customer
 import com.sinaptix.smartsell.shared.domain.PhoneNumber
 import com.sinaptix.smartsell.shared.util.RequestState
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class ProfileViewModel(
@@ -18,6 +17,7 @@ class ProfileViewModel(
 ) : ViewModel() {
 
     var screenState: RequestState<Unit> by mutableStateOf(RequestState.Loading)
+        private set
     var uiState: UIState by mutableStateOf(UIState())
         private set
 
@@ -25,35 +25,38 @@ class ProfileViewModel(
         get() = with(uiState) {
             firstName.length in 3..50 &&
                     lastName.length in 3..50 &&
-                    city?.length in 3..50 &&
-                    zip != null || zip?.toString()?.length in 3..8 &&
-                    address?.length in 3..50 &&
-                    phoneNumber?.number?.length in 5..30
+                    (city == null || city.length in 3..50) &&
+                    (zip == null || zip.toString().length in 3..8) &&
+                    (address == null || address.length in 3..50) &&
+                    (phoneNumber == null || phoneNumber.number.length in 5..30)
         }
 
     init {
-        viewModelScope.launch {
-            customerRepository.readCustomerFlow().collectLatest { data ->
-                if (data.isSuccess()) {
-                    val fetchesCustomer = data.getSuccessData()
+        loadProfile()
+    }
 
-                    uiState = UIState(
-                        id = fetchesCustomer.id,
-                        firstName = fetchesCustomer.firstName,
-                        lastName = fetchesCustomer.lastName,
-                        email = fetchesCustomer.email,
-                        city = fetchesCustomer.city,
-                        zip = fetchesCustomer.zip,
-                        address = fetchesCustomer.address,
-                        country = Country.entries.firstOrNull() { country ->
-                            country.dialCode == fetchesCustomer.phoneNumber?.dialCode
-                        } ?: Country.Mexico,
-                        phoneNumber = fetchesCustomer.phoneNumber,
-                    )
-                    screenState = RequestState.Success(Unit)
-                } else if (data.isError()) {
-                    screenState = RequestState.Error(message = data.getErrorMessage())
-                }
+    private fun loadProfile() {
+        viewModelScope.launch {
+            screenState = RequestState.Loading
+            val result = customerRepository.getMyProfile()
+            if (result.isSuccess()) {
+                val fetchedCustomer = result.getSuccessData()
+                uiState = UIState(
+                    id = fetchedCustomer.id,
+                    firstName = fetchedCustomer.firstName,
+                    lastName = fetchedCustomer.lastName,
+                    email = fetchedCustomer.email,
+                    city = fetchedCustomer.city,
+                    zip = fetchedCustomer.zip,
+                    address = fetchedCustomer.address,
+                    country = Country.entries.firstOrNull { country ->
+                        country.dialCode == fetchedCustomer.phoneNumber?.dialCode
+                    } ?: Country.Mexico,
+                    phoneNumber = fetchedCustomer.phoneNumber,
+                )
+                screenState = RequestState.Success(Unit)
+            } else if (result.isError()) {
+                screenState = RequestState.Error(message = result.getErrorMessage())
             }
         }
     }
@@ -96,12 +99,12 @@ class ProfileViewModel(
         )
     }
 
-    fun setCustomer(
+    fun updateProfile(
         onSuccess: () -> Unit,
         onError: (String) -> Unit,
     ) {
         viewModelScope.launch {
-            customerRepository.setCustomer(
+            val result = customerRepository.updateProfile(
                 customer = Customer(
                     id = uiState.id,
                     firstName = uiState.firstName,
@@ -111,32 +114,13 @@ class ProfileViewModel(
                     zip = uiState.zip,
                     address = uiState.address,
                     phoneNumber = uiState.phoneNumber
-                ),
-                onSuccess = onSuccess,
-                onError = onError
+                )
             )
-        }
-    }
-
-    fun updateCustomer(
-        onSuccess: () -> Unit,
-        onError: (String) -> Unit,
-    ) {
-        viewModelScope.launch {
-            customerRepository.updateCustomer(
-                customer = Customer(
-                    id = uiState.id,
-                    firstName = uiState.firstName,
-                    lastName = uiState.lastName,
-                    email = uiState.email,
-                    city = uiState.city,
-                    zip = uiState.zip,
-                    address = uiState.address,
-                    phoneNumber = uiState.phoneNumber
-                ),
-                onSuccess = onSuccess,
-                onError = onError
-            )
+            if (result.isSuccess()) {
+                onSuccess()
+            } else {
+                onError(result.getErrorMessage())
+            }
         }
     }
 }

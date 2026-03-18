@@ -39,6 +39,7 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtime.compose)
 
             implementation(libs.kotlinx.serialization)
+            implementation(libs.multiplatform.settings.no.arg)
         }
     }
 }

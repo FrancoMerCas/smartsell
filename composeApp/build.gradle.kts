@@ -6,7 +6,6 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
-    alias(libs.plugins.google.services)
 }
 
 kotlin {
@@ -15,7 +14,7 @@ kotlin {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
-    
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -30,7 +29,7 @@ kotlin {
             export(compose.material3)
         }
     }
-    
+
     sourceSets {
         androidMain.dependencies {
             implementation(compose.preview)
@@ -49,7 +48,6 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtime.compose)
 
             implementation(libs.auth.kmp)
-            implementation(libs.firebase.app)
             implementation(libs.koin.compose)
 
             implementation(project(path = ":navigation"))
@@ -92,10 +90,6 @@ composeCompiler {
     stabilityConfigurationFile = rootProject.layout.projectDirectory.file("stability_config.conf")
 }
 
-
 dependencies {
-    implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.common.ktx)
     debugImplementation(compose.uiTooling)
 }
-

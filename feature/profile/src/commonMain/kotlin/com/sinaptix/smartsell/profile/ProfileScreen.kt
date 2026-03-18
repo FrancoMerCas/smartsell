@@ -134,7 +134,7 @@ fun ProfileScreen(
                                 icon = AppIcon.Icon.Checkmark,
                                 enabled = isFormValid,
                                 onClick = {
-                                    viewModel.updateCustomer(
+                                    viewModel.updateProfile(
                                         onSuccess = {
                                             messageBarState.addSuccess(messageSuccesUpdate)
                                         },

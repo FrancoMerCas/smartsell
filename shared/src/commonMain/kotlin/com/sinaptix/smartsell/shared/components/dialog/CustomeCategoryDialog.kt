@@ -29,7 +29,15 @@ import com.sinaptix.smartsell.shared.util.asStringRes
 import com.sinaptix.smartsell.shared.util.filterByCountry
 
 @Composable
-fun CustomeCategoryDialog() {
+fun CustomeCategoryDialog(
+    searchQuery: String,
+    onSearchQueryChange: (String) -> Unit,
+    allCountries: List<com.sinaptix.smartsell.shared.domain.Country>,
+    filteredCountries: List<com.sinaptix.smartsell.shared.domain.Country>,
+    selectedCountry: com.sinaptix.smartsell.shared.domain.Country?,
+    onDismiss: () -> Unit,
+    onConfirmClick: (com.sinaptix.smartsell.shared.domain.Country?) -> Unit,
+) {
     AlertDialog(
         containerColor = Surface,
         title = {
@@ -47,17 +55,7 @@ fun CustomeCategoryDialog() {
             ) {
                 CustomeTextField(
                     value = searchQuery,
-                    onValueChange = { query ->
-                        searchQuery = query
-                        if (searchQuery.isNotEmpty()) {
-                            val filtered = allCountries.filterByCountry(query)
-                            filteredCountries.clear()
-                            filteredCountries.addAll(filtered)
-                        } else {
-                            filteredCountries.clear()
-                            filteredCountries.addAll(allCountries)
-                        }
-                    },
+                    onValueChange = { query -> onSearchQueryChange(query) },
                     placeHolder = AppStrings.PlaceHolder.placeholderDialCode.asStringRes()
                 )
                 Spacer(modifier = Modifier.height(12.dp))
@@ -73,7 +71,7 @@ fun CustomeCategoryDialog() {
                             CustomeCountryPicker(
                                 country = country,
                                 isSelected = selectedCountry == country,
-                                onSelected = { selectedCountry = country }
+                                onSelected = { onConfirmClick(country) }
                             )
                         }
                     }
