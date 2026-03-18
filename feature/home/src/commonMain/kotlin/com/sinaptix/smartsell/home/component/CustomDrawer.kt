@@ -27,6 +27,7 @@ import com.sinaptix.smartsell.shared.util.asStringRes
 @Composable
 fun CustomDrawer(
     onProfileClick: () -> Unit,
+    onOrdersClick: () -> Unit,
     onContactUsClick: () -> Unit,
     onSignOutClick: () -> Unit,
     onAdminPanelClick: () -> Unit,
@@ -67,11 +68,10 @@ fun CustomDrawer(
                 onClick = {
                     when(itemMenu) {
                         DrawerItem.Profile -> onProfileClick()
+                        DrawerItem.Orders -> onOrdersClick()
                         DrawerItem.Contact -> onContactUsClick()
-                        DrawerItem.SignOut-> onSignOutClick()
-                        else -> {
-
-                        }
+                        DrawerItem.SignOut -> onSignOutClick()
+                        else -> {}
                     }
                 }
             )

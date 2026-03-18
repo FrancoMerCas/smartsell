@@ -18,6 +18,7 @@
     <string name="nav_location">Ubicacion</string>
     <string name="nav_contact">Contactanos</string>
     <string name="nav_sign_out">Salir</string>
+    <string name="nav_orders">Mis pedidos</string>
     <string name="nav_admin_panel">Admin panel</string>
 
     <!-- Auth -->

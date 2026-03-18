@@ -8,6 +8,7 @@ import org.jetbrains.compose.resources.stringResource
 fun DrawerItem.getTitle(): String {
     return when (this) {
         DrawerItem.Profile -> stringResource(AppStrings.Navigation.profile)
+        DrawerItem.Orders -> stringResource(AppStrings.Navigation.orders)
         DrawerItem.Blog -> stringResource(AppStrings.Navigation.blog)
         DrawerItem.Location -> stringResource(AppStrings.Navigation.location)
         DrawerItem.Contact -> stringResource(AppStrings.Navigation.contact)

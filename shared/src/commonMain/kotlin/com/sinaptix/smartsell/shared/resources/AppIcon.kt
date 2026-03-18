@@ -20,6 +20,7 @@ import smartsell.shared.generated.resources.ic_map_pin
 import smartsell.shared.generated.resources.ic_menu
 import smartsell.shared.generated.resources.ic_minus
 import smartsell.shared.generated.resources.ic_plus
+import smartsell.shared.generated.resources.ic_receipt
 import smartsell.shared.generated.resources.ic_right_arrow
 import smartsell.shared.generated.resources.ic_search
 import smartsell.shared.generated.resources.ic_shopping_cart
@@ -43,6 +44,7 @@ object AppIcon {
         val Menu = Res.drawable.ic_menu
         val BackArrow = Res.drawable.ic_back_arrow
         val RightArrow = Res.drawable.ic_right_arrow
+        val Receipt = Res.drawable.ic_receipt
         val Home = Res.drawable.ic_home
         val ShoppingCart = Res.drawable.ic_shopping_cart
         val Categories = Res.drawable.ic_grid

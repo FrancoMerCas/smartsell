@@ -31,6 +31,7 @@ import smartsell.shared.generated.resources.error_unknow
 import smartsell.shared.generated.resources.error_user_not_found
 import smartsell.shared.generated.resources.error_user_unavailable
 import smartsell.shared.generated.resources.nav_admin_panel
+import smartsell.shared.generated.resources.nav_orders
 import smartsell.shared.generated.resources.nav_blog
 import smartsell.shared.generated.resources.nav_categories
 import smartsell.shared.generated.resources.nav_contact
@@ -78,6 +79,7 @@ object AppStrings {
         val blog = Res.string.nav_blog
         val location = Res.string.nav_location
         val contact = Res.string.nav_contact
+        val orders = Res.string.nav_orders
         val signOut = Res.string.nav_sign_out
         val adminPanel = Res.string.nav_admin_panel
     }

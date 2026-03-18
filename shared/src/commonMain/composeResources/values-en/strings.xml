@@ -17,6 +17,7 @@
     <string name="nav_location">Location</string>
     <string name="nav_contact">Contact us</string>
     <string name="nav_sign_out">Sign out</string>
+    <string name="nav_orders">My orders</string>
     <string name="nav_admin_panel">Admin panel</string>
 
     <!-- Auth -->
