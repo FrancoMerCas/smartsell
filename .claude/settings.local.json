@@ -24,7 +24,16 @@
       "Bash(./gradlew assembleDebug --rerun-tasks --no-configuration-cache --warning-mode all 2>&1 | grep -iE \"deprecat|warn\" | sort -u | head -60)",
       "Bash(./gradlew assembleDebug --rerun-tasks --no-configuration-cache 2>&1 | tee /tmp/full_build.txt; echo \"---\"; grep -iE \"w:|warning|deprecat|is deprecated\" /tmp/full_build.txt | sort -u | head -60)",
       "Bash(./gradlew :composeApp:compileDebugKotlinAndroid --rerun-tasks --no-configuration-cache 2>&1 | grep -v \"^>\" | grep -v \"^$\" | grep -v \"UP-TO-DATE\" | head -50)",
-      "Bash(./gradlew :composeApp:compileCommonMainKotlinMetadata --rerun-tasks --no-configuration-cache 2>&1 | grep -v \"^>\" | grep -v \"^$\" | grep -v \"UP-TO-DATE\" | head -60)"
+      "Bash(./gradlew :composeApp:compileCommonMainKotlinMetadata --rerun-tasks --no-configuration-cache 2>&1 | grep -v \"^>\" | grep -v \"^$\" | grep -v \"UP-TO-DATE\" | head -60)",
+      "Bash(cat /Users/franco/StudioProjects/SynaptiX/SmartSell/iosApp/iosApp.xcodeproj/project.xcworkspace/swiftpm/Package.resolved 2>/dev/null || cat /Users/franco/StudioProjects/SynaptiX/SmartSell/iosApp/iosApp.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved 2>/dev/null | python3 -m json.tool 2>/dev/null | head -80)",
+      "Bash(xcodebuild -version 2>/dev/null && xcrun simctl list devices available 2>/dev/null | grep \"iPhone\\\\|iPad\" | head -10)",
+      "Bash(./gradlew :composeApp:linkDebugFrameworkIosSimulatorArm64 2>&1 | tail -5)",
+      "Bash(./gradlew :composeApp:linkDebugFrameworkIosSimulatorArm64 2>&1 | grep -E \"^e:|error:\" | head -30)",
+      "Bash(xcrun --show-sdk-path --sdk iphonesimulator 2>&1 && xcode-select -p 2>&1)",
+      "Bash(sudo xcodebuild:*)",
+      "Bash(xcrun --show-sdk-path --sdk iphonesimulator 2>&1)",
+      "Bash(./gradlew :composeApp:linkDebugFrameworkIosSimulatorArm64 2>&1 | tail -8)",
+      "Bash(git add:*)"
     ]
   }
 }
