@@ -39,6 +39,7 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtime.compose)
 
             implementation(libs.kotlinx.serialization)
+            implementation(libs.multiplatform.settings.no.arg)
         }
     }
 }
@@ -49,7 +50,7 @@ android {
 
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
-        targetSdk = libs.versions.android.targetSdk.get().toInt()
+        lint { targetSdk = libs.versions.android.targetSdk.get().toInt() }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11

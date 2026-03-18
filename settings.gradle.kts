@@ -29,11 +29,14 @@ dependencyResolutionManagement {
 }
 include(":data")
 include(":di")
-include(":feature:home")
-
+include(":feature:admin_panel")
+include(":feature:admin_panel:manage_product")
 include(":feature:home")
 include(":feature:profile")
 include(":feature:auth")
+include(":feature:products")
+include(":feature:cart")
+include(":feature:orders")
 include(":navigation")
 include(":composeApp")
 include(":shared")

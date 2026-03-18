@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.sinaptix.smartsell.shared.resources.Alpha.DISABLED
 import com.sinaptix.smartsell.shared.resources.Alpha.HALF
@@ -37,7 +38,8 @@ fun CustomeTextField(
     expanded: Boolean = false,
     keyboardOptions: KeyboardOptions = KeyboardOptions(
         keyboardType = KeyboardType.Text
-    )
+    ),
+    visualTransformation: VisualTransformation = VisualTransformation.None
 ) {
     val borderColor by animateColorAsState(
         targetValue = if (error) BorderError else BorderIdle
@@ -66,6 +68,7 @@ fun CustomeTextField(
         singleLine = !expanded,
         shape = RoundedCornerShape(size = 6.dp),
         keyboardOptions = keyboardOptions,
+        visualTransformation = visualTransformation,
         colors = TextFieldDefaults.colors(
             focusedTextColor = TextPrimary,
             unfocusedTextColor = TextPrimary,

@@ -11,6 +11,7 @@ import smartsell.shared.generated.resources.auth_logging_in_google
 import smartsell.shared.generated.resources.auth_success
 import smartsell.shared.generated.resources.auth_waith
 import smartsell.shared.generated.resources.button_update
+import smartsell.shared.generated.resources.descript_icon_add
 import smartsell.shared.generated.resources.descript_icon_back_arrow
 import smartsell.shared.generated.resources.descript_icon_button
 import smartsell.shared.generated.resources.descript_icon_checkmark
@@ -51,9 +52,12 @@ import smartsell.shared.generated.resources.placeholder_firstname
 import smartsell.shared.generated.resources.placeholder_lastname
 import smartsell.shared.generated.resources.placeholder_phone_number
 import smartsell.shared.generated.resources.placeholder_zip
+import smartsell.shared.generated.resources.title_admin_panel
 import smartsell.shared.generated.resources.title_cart
 import smartsell.shared.generated.resources.title_categories
 import smartsell.shared.generated.resources.title_home
+import smartsell.shared.generated.resources.title_manage_product_edit
+import smartsell.shared.generated.resources.title_manage_product_new
 import smartsell.shared.generated.resources.title_my_profile
 
 object AppStrings {
@@ -90,6 +94,9 @@ object AppStrings {
         val titleCategorie = Res.string.title_categories
         val titleCart = Res.string.title_cart
         val titleMyProfile = Res.string.title_my_profile
+        val titleAdminPanel = Res.string.title_admin_panel
+        val titleManageProductEdit = Res.string.title_manage_product_edit
+        val titleManageProductNew = Res.string.title_manage_product_new
     }
 
     object Descriptions {
@@ -102,6 +109,7 @@ object AppStrings {
         val descriptIconCheckmark = Res.string.descript_icon_checkmark
         val descriptImgFlag = Res.string.descript_img_flag
         val descriptIconError = Res.string.descript_icon_error
+        val descriptIconAdd = Res.string.descript_icon_add
     }
 
     object Errors {

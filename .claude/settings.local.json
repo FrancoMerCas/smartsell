@@ -1,0 +1,40 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p /Users/franco/StudioProjects/SynaptiX/SmartSell/data/src/commonMain/kotlin/com/sinaptix/smartsell/data/remote && mkdir -p /Users/franco/StudioProjects/SynaptiX/SmartSell/data/src/androidMain/kotlin/com/sinaptix/smartsell/data/remote && mkdir -p /Users/franco/StudioProjects/SynaptiX/SmartSell/data/src/iosMain/kotlin/com/sinaptix/smartsell/data/remote)",
+      "Bash(mkdir -p /Users/franco/StudioProjects/SynaptiX/SmartSell/feature/products/src/commonMain/kotlin/com/sinaptix/smartsell/products/module\nmkdir -p /Users/franco/StudioProjects/SynaptiX/SmartSell/feature/products/src/commonMain/kotlin/com/sinaptix/smartsell/products/component\nmkdir -p /Users/franco/StudioProjects/SynaptiX/SmartSell/feature/cart/src/commonMain/kotlin/com/sinaptix/smartsell/cart/module\nmkdir -p /Users/franco/StudioProjects/SynaptiX/SmartSell/feature/orders/src/commonMain/kotlin/com/sinaptix/smartsell/orders/module\necho \"Directories created\")",
+      "Bash(./gradlew :feature:products:compileDebugKotlinAndroid 2>&1 | tail -60)",
+      "Bash(./gradlew :feature:products:compileDebugKotlinAndroid 2>&1 | tail -40)",
+      "Bash(./gradlew assembleDebug 2>&1 | grep -E \"\\(FAILED|error:|e:\\)\" | head -40)",
+      "Bash(./gradlew assembleDebug 2>&1 | grep -E \"^e:|FAILED|BUILD\" | head -40)",
+      "Bash(./gradlew assembleDebug 2>&1 | grep -E \"^e:|FAILED|BUILD SUCCESS\" | head -40)",
+      "Bash(./gradlew :feature:products:compileDebugKotlinAndroid :feature:cart:compileDebugKotlinAndroid :feature:orders:compileDebugKotlinAndroid :feature:home:compileDebugKotlinAndroid :navigation:compileDebugKotlinAndroid 2>&1 | grep -E \"^e:|FAILED|BUILD SUCCESS\")",
+      "Bash(find /Users/franco/StudioProjects/SynaptiX/SmartSell/feature/admin_panel/manage_product -type f -name \"*.kt\" -o -name \"*.kts\" 2>/dev/null | head -50)",
+      "Bash(./gradlew :feature:admin_panel:compileCommonMainKotlinMetadata 2>&1 | tail -60)",
+      "Bash(./gradlew :feature:products:compileCommonMainKotlinMetadata 2>&1 | tail -10)",
+      "Bash(./gradlew :feature:products:compileCommonMainKotlinMetadata 2>&1 | grep \"error:\")",
+      "Bash(./gradlew :feature:products:compileCommonMainKotlinMetadata 2>&1 | grep -i \"error\\\\|fail\" | head -20)",
+      "Bash(./gradlew :feature:products:compileCommonMainKotlinMetadata 2>&1 | grep \"e: \")",
+      "Bash(./gradlew :feature:admin_panel:compileCommonMainKotlinMetadata 2>&1 | grep \"e: \\\\|FAILED\\\\|BUILD\" | head -40)",
+      "Bash(./gradlew :feature:admin_panel:compileCommonMainKotlinMetadata :feature:admin_panel:manage_product:compileCommonMainKotlinMetadata :data:compileCommonMainKotlinMetadata :di:compileCommonMainKotlinMetadata :feature:products:compileCommonMainKotlinMetadata :feature:cart:compileCommonMainKotlinMetadata :feature:orders:compileCommonMainKotlinMetadata 2>&1 | grep \"e: \\\\|FAILED\\\\|BUILD\" | head -40)",
+      "Bash(./gradlew assembleDebug 2>&1 | tail -30)",
+      "Bash(./gradlew assembleDebug 2>&1 | grep -E \"^w: |warning:|deprecated|Warning\" | sort -u | head -40)",
+      "Bash(./gradlew assembleDebug --rerun-tasks 2>&1 | head -80)",
+      "Bash(./gradlew build:*)",
+      "Bash(./gradlew assembleDebug --rerun-tasks --no-configuration-cache --warning-mode all 2>&1 | grep -iE \"deprecat|warn\" | sort -u | head -60)",
+      "Bash(./gradlew assembleDebug --rerun-tasks --no-configuration-cache 2>&1 | tee /tmp/full_build.txt; echo \"---\"; grep -iE \"w:|warning|deprecat|is deprecated\" /tmp/full_build.txt | sort -u | head -60)",
+      "Bash(./gradlew :composeApp:compileDebugKotlinAndroid --rerun-tasks --no-configuration-cache 2>&1 | grep -v \"^>\" | grep -v \"^$\" | grep -v \"UP-TO-DATE\" | head -50)",
+      "Bash(./gradlew :composeApp:compileCommonMainKotlinMetadata --rerun-tasks --no-configuration-cache 2>&1 | grep -v \"^>\" | grep -v \"^$\" | grep -v \"UP-TO-DATE\" | head -60)",
+      "Bash(cat /Users/franco/StudioProjects/SynaptiX/SmartSell/iosApp/iosApp.xcodeproj/project.xcworkspace/swiftpm/Package.resolved 2>/dev/null || cat /Users/franco/StudioProjects/SynaptiX/SmartSell/iosApp/iosApp.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved 2>/dev/null | python3 -m json.tool 2>/dev/null | head -80)",
+      "Bash(xcodebuild -version 2>/dev/null && xcrun simctl list devices available 2>/dev/null | grep \"iPhone\\\\|iPad\" | head -10)",
+      "Bash(./gradlew :composeApp:linkDebugFrameworkIosSimulatorArm64 2>&1 | tail -5)",
+      "Bash(./gradlew :composeApp:linkDebugFrameworkIosSimulatorArm64 2>&1 | grep -E \"^e:|error:\" | head -30)",
+      "Bash(xcrun --show-sdk-path --sdk iphonesimulator 2>&1 && xcode-select -p 2>&1)",
+      "Bash(sudo xcodebuild:*)",
+      "Bash(xcrun --show-sdk-path --sdk iphonesimulator 2>&1)",
+      "Bash(./gradlew :composeApp:linkDebugFrameworkIosSimulatorArm64 2>&1 | tail -8)",
+      "Bash(git add:*)",
+      "Bash(./gradlew :composeApp:linkDebugFrameworkIosSimulatorArm64 2>&1 | grep -E \"^e:|BUILD FAILED|BUILD SUCCESSFUL\" | head -10)"
+    ]
+  }
+}

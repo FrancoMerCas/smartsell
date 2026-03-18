@@ -1,172 +1,66 @@
 package com.sinaptix.smartsell.data.domain
 
+import com.sinaptix.smartsell.data.dto.PhoneNumberDto
+import com.sinaptix.smartsell.data.dto.UpdateCustomerRequest
+import com.sinaptix.smartsell.data.remote.ApiService
 import com.sinaptix.smartsell.shared.domain.Customer
+import com.sinaptix.smartsell.shared.domain.PhoneNumber
 import com.sinaptix.smartsell.shared.util.RequestState
-import dev.gitlive.firebase.Firebase
-import dev.gitlive.firebase.auth.FirebaseUser
-import dev.gitlive.firebase.auth.auth
-import dev.gitlive.firebase.firestore.FirebaseFirestoreSettings
-import dev.gitlive.firebase.firestore.firestore
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.channelFlow
-import kotlinx.coroutines.flow.collectLatest
 
-class CustomerRepositoryImpl() : CustomerRepository {
-    override fun getCurrentUserId(): String? {
-        return Firebase.auth.currentUser?.uid
-    }
+class CustomerRepositoryImpl(
+    private val apiService: ApiService
+) : CustomerRepository {
 
-    override suspend fun createCustomer(
-        user: FirebaseUser?,
-        onSuccess: () -> Unit,
-        onError: (String) -> Unit
-    ) {
-        try {
-            if (user != null) {
-                val customerCollection = Firebase
-                    .firestore
-                    .collection(
-                        collectionPath = "customer"
-                    )
-                val customer = Customer(
-                    id = user.uid,
-                    firstName = user.displayName?.split(" ")?.firstOrNull() ?: "Unknown",
-                    lastName = user.displayName?.split(" ")?.lastOrNull() ?: "Unknown",
-                    email = user.email ?: "Unknown",
-                )
-
-                val customerExists = customerCollection.document(user.uid).get().exists
-
-                if (customerExists) {
-                    onSuccess()
-                } else {
-                    customerCollection.document(user.uid).set(customer)
-                    onSuccess()
-                }
-            } else {
-                onError("User is not available")
-            }
-        } catch (e: Exception) {
-            onError("Error while creating a Customer: ${e.message}")
-        }
-    }
-
-    override fun readCustomerFlow(): Flow<RequestState<Customer>> = channelFlow {
-        try {
-            val userId = getCurrentUserId()
-            if (userId != null) {
-                val database = Firebase.firestore
-                database.collection(collectionPath = "customer")
-                    .document(userId)
-                    .snapshots
-                    .collectLatest { document ->
-                        if (document.exists) {
-                            val customer = Customer(
-                                id = document.id,
-                                firstName = document.get(field = "firstname"),
-                                lastName = document.get(field = "lastname"),
-                                email = document.get(field = "email"),
-                                city = document.get(field = "city"),
-                                zip = document.get(field = "zip"),
-                                address = document.get(field = "address"),
-                                phoneNumber = document.get(field = "phoneNumber"),
-                                cart = document.get(field = "cart"),
-                                //isAdmin = privateDataDocument.get(field = "isAdmin")
-                            )
-                            println("TEST -> $customer")
-                            send(RequestState.Success(data = customer))
-                        } else {
-                            send(RequestState.Error("Queried customer document does not exist"))
-                        }
-                    }
-            } else {
-                send(RequestState.Error("User is not available"))
-            }
-        } catch(e: Exception) {
-            send(RequestState.Error("Error while reading a Customer information: ${e.message}"))
-        }
-    }
-
-    override suspend fun setCustomer(
-        customer: Customer,
-        onSuccess: () -> Unit,
-        onError: (String) -> Unit
-    ) {
-        try {
-            val userId = getCurrentUserId()
-            if (userId != null) {
-                val firestore = Firebase.firestore
-                val customerCollection = firestore.collection(collectionPath = "customer")
-
-                val existingCustomer = customerCollection
-                    .document(customer.id)
-                    .get()
-                if (existingCustomer.exists) {
-                    customerCollection
-                        .document(customer.id)
-                        .update(
-                            "firstname" to customer.firstName,
-                            "lastname" to customer.lastName,
-                            "city" to customer.city,
-                            "zip" to customer.zip,
-                            "address" to customer.address,
-                            "phoneNumber" to customer.phoneNumber
-                        )
-                    onSuccess()
-                } else {
-                    onError("Customer not found.")
-                }
-            } else {
-                onError("User is not available.")
-            }
-        } catch (e: Exception) {
-            onError("Error while updating a Customer information: ${e.message}")
-        }
-    }
-
-    override suspend fun updateCustomer(
-        customer: Customer,
-        onSuccess: () -> Unit,
-        onError: (String) -> Unit
-    ) {
-        try {
-            val userId = getCurrentUserId()
-            if (userId != null) {
-                val firestore = Firebase.firestore
-                val customerCollection = firestore.collection(collectionPath = "customer")
-
-                val existingCustomer = customerCollection
-                    .document(customer.id)
-                    .get()
-                if (existingCustomer.exists) {
-                    customerCollection
-                        .document(customer.id)
-                        .update(
-                            "firstname" to customer.firstName,
-                            "lastname" to customer.lastName,
-                            "city" to customer.city,
-                            "zip" to customer.zip,
-                            "address" to customer.address,
-                            "phoneNumber" to customer.phoneNumber
-                        )
-                    onSuccess()
-                } else {
-                    onError("Customer not found.")
-                }
-            } else {
-                onError("User is not available.")
-            }
-        } catch (e: Exception) {
-            onError("Error while updating a Customer information: ${e.message}")
-        }
-    }
-
-    override suspend fun signOut(): RequestState<Unit> {
+    override suspend fun getMyProfile(): RequestState<Customer> {
         return try {
-            Firebase.auth.signOut()
-            RequestState.Success(data = Unit)
+            val result = apiService.getMyProfile()
+            if (result.isSuccess) {
+                val response = result.getOrNull()!!
+                RequestState.Success(response.toDomain())
+            } else {
+                RequestState.Error(result.exceptionOrNull()?.message ?: "Failed to fetch profile")
+            }
         } catch (e: Exception) {
-            RequestState.Error("Error while signin out: ${e.message}")
+            RequestState.Error("Error fetching profile: ${e.message}")
         }
     }
+
+    override suspend fun updateProfile(customer: Customer): RequestState<Customer> {
+        return try {
+            val request = UpdateCustomerRequest(
+                firstName = customer.firstName,
+                lastName = customer.lastName,
+                address = customer.address,
+                city = customer.city,
+                zip = customer.zip,
+                phoneNumber = customer.phoneNumber?.let {
+                    PhoneNumberDto(dialCode = it.dialCode, number = it.number)
+                }
+            )
+            val result = apiService.updateMyProfile(request)
+            if (result.isSuccess) {
+                val response = result.getOrNull()!!
+                RequestState.Success(response.toDomain())
+            } else {
+                RequestState.Error(result.exceptionOrNull()?.message ?: "Failed to update profile")
+            }
+        } catch (e: Exception) {
+            RequestState.Error("Error updating profile: ${e.message}")
+        }
+    }
+}
+
+private fun com.sinaptix.smartsell.data.dto.CustomerResponse.toDomain(): Customer {
+    return Customer(
+        id = id,
+        firstName = firstName,
+        lastName = lastName,
+        email = email,
+        address = address,
+        city = city,
+        zip = zip,
+        phoneNumber = phoneNumber?.let {
+            PhoneNumber(dialCode = it.dialCode, number = it.number)
+        }
+    )
 }

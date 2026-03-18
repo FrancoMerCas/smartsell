@@ -1,14 +1,16 @@
 package com.sinaptix.smartsell.shared.domain
 
 import kotlinx.serialization.Serializable
-import kotlin.uuid.ExperimentalUuidApi
-import kotlin.uuid.Uuid
 
 @Serializable
-@OptIn(ExperimentalUuidApi::class)
 data class CartItem(
-    val id: String = Uuid.random().toHexString(),
+    val id: String,
     val productId: String,
-    val flavor: String? = null,
-    val quantity: Int
+    val productTitle: String = "",
+    val productThumbnail: String = "",
+    val variantSku: String? = null,
+    val variantSelection: Map<String, String> = emptyMap(),
+    val specialInstructions: String? = null,
+    val quantity: Int,
+    val priceSnapshot: Double
 )
