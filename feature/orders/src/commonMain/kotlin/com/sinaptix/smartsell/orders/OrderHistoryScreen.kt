@@ -49,6 +49,7 @@ import com.sinaptix.smartsell.shared.resources.TextPrimary
 import com.sinaptix.smartsell.shared.resources.TextSecondary
 import com.sinaptix.smartsell.shared.resources.White
 import com.sinaptix.smartsell.shared.util.RequestState
+import com.sinaptix.smartsell.shared.util.formatPrice
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -190,7 +191,7 @@ private fun OrderCard(
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = "${order.items.size} items · ${"$%.2f".format(order.total)}",
+                    text = "${order.items.size} items · ${order.total.formatPrice()}",
                     fontFamily = MadaRegularFont(),
                     fontSize = FontSize.REGULAR,
                     color = TextSecondary

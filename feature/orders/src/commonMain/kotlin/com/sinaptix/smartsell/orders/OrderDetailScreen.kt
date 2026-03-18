@@ -52,6 +52,7 @@ import com.sinaptix.smartsell.shared.resources.SurfaceLighter
 import com.sinaptix.smartsell.shared.resources.TextPrimary
 import com.sinaptix.smartsell.shared.resources.TextSecondary
 import com.sinaptix.smartsell.shared.util.RequestState
+import com.sinaptix.smartsell.shared.util.formatPrice
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -270,7 +271,7 @@ private fun OrderItemRow(item: OrderItem) {
                     color = TextSecondary
                 )
                 Text(
-                    text = "$%.2f".format(item.unitPrice * item.quantity),
+                    text = (item.unitPrice * item.quantity).formatPrice(),
                     fontFamily = MadaBoldFont(),
                     fontSize = FontSize.REGULAR,
                     color = SageGreen
@@ -328,7 +329,7 @@ private fun PriceLine(
             color = TextPrimary
         )
         Text(
-            text = "$%.2f".format(value),
+            text = value.formatPrice(),
             fontFamily = MadaBoldFont(),
             fontSize = fontSize,
             color = valueColor

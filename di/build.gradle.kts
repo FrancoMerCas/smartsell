@@ -47,6 +47,8 @@ kotlin {
             implementation(project(path = ":feature:products"))
             implementation(project(path = ":feature:cart"))
             implementation(project(path = ":feature:orders"))
+            implementation(project(path = ":feature:admin_panel"))
+            implementation(project(path = ":feature:admin_panel:manage_product"))
             implementation(project(path = ":data"))
         }
     }

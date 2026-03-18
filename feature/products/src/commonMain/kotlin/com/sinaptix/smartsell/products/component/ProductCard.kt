@@ -41,6 +41,7 @@ import com.sinaptix.smartsell.shared.resources.Surface
 import com.sinaptix.smartsell.shared.resources.TextPrimary
 import com.sinaptix.smartsell.shared.resources.TextSecondary
 import com.sinaptix.smartsell.shared.resources.White
+import com.sinaptix.smartsell.shared.util.formatPrice
 
 @Composable
 fun ProductCard(
@@ -149,7 +150,7 @@ private fun PriceRow(price: Double, originalPrice: Double?) {
         horizontalArrangement = Arrangement.spacedBy(6.dp)
     ) {
         Text(
-            text = "$%.2f".format(price),
+            text = price.formatPrice(),
             fontFamily = MadaBoldFont(),
             fontSize = FontSize.REGULAR,
             color = SageGreen,
@@ -157,7 +158,7 @@ private fun PriceRow(price: Double, originalPrice: Double?) {
         )
         if (originalPrice != null && originalPrice > price) {
             Text(
-                text = "$%.2f".format(originalPrice),
+                text = originalPrice.formatPrice(),
                 fontFamily = MadaRegularFont(),
                 fontSize = FontSize.SMALL,
                 color = PriceOriginal,

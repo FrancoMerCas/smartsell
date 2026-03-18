@@ -1,9 +1,11 @@
 package com.sinaptix.smartsell.di
 
+import com.sinaptix.smartsell.admin_panel.module.adminPanelModule
 import com.sinaptix.smartsell.auth.module.authModule
 import com.sinaptix.smartsell.cart.module.cartModule
 import com.sinaptix.smartsell.data.module.repositoryModule
 import com.sinaptix.smartsell.home.module.homeModule
+import com.sinaptix.smartsell.manage_product.module.manageProductModule
 import com.sinaptix.smartsell.orders.module.ordersModule
 import com.sinaptix.smartsell.products.module.productsModule
 import com.sinaptix.smartsell.profile.module.profileModule
@@ -28,5 +30,7 @@ private fun getAllModules() = listOf(
     profileModule,
     productsModule,
     cartModule,
-    ordersModule
+    ordersModule,
+    adminPanelModule,
+    manageProductModule
 )

@@ -8,7 +8,16 @@
       "Bash(./gradlew assembleDebug 2>&1 | grep -E \"\\(FAILED|error:|e:\\)\" | head -40)",
       "Bash(./gradlew assembleDebug 2>&1 | grep -E \"^e:|FAILED|BUILD\" | head -40)",
       "Bash(./gradlew assembleDebug 2>&1 | grep -E \"^e:|FAILED|BUILD SUCCESS\" | head -40)",
-      "Bash(./gradlew :feature:products:compileDebugKotlinAndroid :feature:cart:compileDebugKotlinAndroid :feature:orders:compileDebugKotlinAndroid :feature:home:compileDebugKotlinAndroid :navigation:compileDebugKotlinAndroid 2>&1 | grep -E \"^e:|FAILED|BUILD SUCCESS\")"
+      "Bash(./gradlew :feature:products:compileDebugKotlinAndroid :feature:cart:compileDebugKotlinAndroid :feature:orders:compileDebugKotlinAndroid :feature:home:compileDebugKotlinAndroid :navigation:compileDebugKotlinAndroid 2>&1 | grep -E \"^e:|FAILED|BUILD SUCCESS\")",
+      "Bash(find /Users/franco/StudioProjects/SynaptiX/SmartSell/feature/admin_panel/manage_product -type f -name \"*.kt\" -o -name \"*.kts\" 2>/dev/null | head -50)",
+      "Bash(./gradlew :feature:admin_panel:compileCommonMainKotlinMetadata 2>&1 | tail -60)",
+      "Bash(./gradlew :feature:products:compileCommonMainKotlinMetadata 2>&1 | tail -10)",
+      "Bash(./gradlew :feature:products:compileCommonMainKotlinMetadata 2>&1 | grep \"error:\")",
+      "Bash(./gradlew :feature:products:compileCommonMainKotlinMetadata 2>&1 | grep -i \"error\\\\|fail\" | head -20)",
+      "Bash(./gradlew :feature:products:compileCommonMainKotlinMetadata 2>&1 | grep \"e: \")",
+      "Bash(./gradlew :feature:admin_panel:compileCommonMainKotlinMetadata 2>&1 | grep \"e: \\\\|FAILED\\\\|BUILD\" | head -40)",
+      "Bash(./gradlew :feature:admin_panel:compileCommonMainKotlinMetadata :feature:admin_panel:manage_product:compileCommonMainKotlinMetadata :data:compileCommonMainKotlinMetadata :di:compileCommonMainKotlinMetadata :feature:products:compileCommonMainKotlinMetadata :feature:cart:compileCommonMainKotlinMetadata :feature:orders:compileCommonMainKotlinMetadata 2>&1 | grep \"e: \\\\|FAILED\\\\|BUILD\" | head -40)",
+      "Bash(./gradlew assembleDebug 2>&1 | tail -30)"
     ]
   }
 }

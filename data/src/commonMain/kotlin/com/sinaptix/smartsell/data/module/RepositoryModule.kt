@@ -1,6 +1,8 @@
 package com.sinaptix.smartsell.data.module
 
 import com.russhwolf.settings.Settings
+import com.sinaptix.smartsell.data.domain.AdminRepository
+import com.sinaptix.smartsell.data.domain.AdminRepositoryImpl
 import com.sinaptix.smartsell.data.domain.AuthRepository
 import com.sinaptix.smartsell.data.domain.AuthRepositoryImpl
 import com.sinaptix.smartsell.data.domain.CartRepository
@@ -28,4 +30,5 @@ val repositoryModule = module {
     single<CategoryRepository> { CategoryRepositoryImpl(get()) }
     single<CartRepository> { CartRepositoryImpl(get()) }
     single<OrderRepository> { OrderRepositoryImpl(get()) }
+    single<AdminRepository> { AdminRepositoryImpl(get()) }
 }

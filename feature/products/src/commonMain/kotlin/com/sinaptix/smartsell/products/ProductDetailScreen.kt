@@ -64,6 +64,7 @@ import com.sinaptix.smartsell.shared.resources.SurfaceGreenLighter
 import com.sinaptix.smartsell.shared.resources.TextPrimary
 import com.sinaptix.smartsell.shared.resources.TextSecondary
 import com.sinaptix.smartsell.shared.util.RequestState
+import com.sinaptix.smartsell.shared.util.formatPrice
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -279,7 +280,7 @@ private fun ProductDetailBody(
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 Text(
-                    text = "$%.2f".format(currentPrice),
+                    text = currentPrice.formatPrice(),
                     fontFamily = MadaBoldFont(),
                     fontSize = FontSize.EXTRA_MEDIUM,
                     color = SageGreen,
@@ -292,7 +293,7 @@ private fun ProductDetailBody(
                 }
                 if (origPrice != null && origPrice > currentPrice) {
                     Text(
-                        text = "$%.2f".format(origPrice),
+                        text = origPrice.formatPrice(),
                         fontFamily = MadaRegularFont(),
                         fontSize = FontSize.REGULAR,
                         color = PriceOriginal,
@@ -451,7 +452,7 @@ private fun ProductDetailBody(
 
             // Add to Cart button
             CustomePrimaryButton(
-                text = if (isAddingToCart) "Adding..." else "Add to Cart  ${"$%.2f".format(currentPrice * quantity)}",
+                text = if (isAddingToCart) "Adding..." else "Add to Cart  ${(currentPrice * quantity).formatPrice()}",
                 enabled = isInStock && !isAddingToCart,
                 onClick = onAddToCart
             )

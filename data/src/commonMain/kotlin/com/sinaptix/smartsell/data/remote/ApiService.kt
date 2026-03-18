@@ -1,10 +1,13 @@
 package com.sinaptix.smartsell.data.remote
 
 import com.sinaptix.smartsell.data.dto.AddCartItemRequest
+import com.sinaptix.smartsell.data.dto.AdminStatsResponse
 import com.sinaptix.smartsell.data.dto.ApiResponse
 import com.sinaptix.smartsell.data.dto.AuthResponse
 import com.sinaptix.smartsell.data.dto.CartResponse
 import com.sinaptix.smartsell.data.dto.CategoryResponse
+import com.sinaptix.smartsell.data.dto.CreateCategoryRequest
+import com.sinaptix.smartsell.data.dto.CreateProductRequest
 import com.sinaptix.smartsell.data.dto.CustomerResponse
 import com.sinaptix.smartsell.data.dto.GoogleAuthRequest
 import com.sinaptix.smartsell.data.dto.LoginRequest
@@ -17,7 +20,10 @@ import com.sinaptix.smartsell.data.dto.RefreshResponse
 import com.sinaptix.smartsell.data.dto.RefreshTokenRequest
 import com.sinaptix.smartsell.data.dto.RegisterRequest
 import com.sinaptix.smartsell.data.dto.UpdateCartItemRequest
+import com.sinaptix.smartsell.data.dto.UpdateCategoryRequest
 import com.sinaptix.smartsell.data.dto.UpdateCustomerRequest
+import com.sinaptix.smartsell.data.dto.UpdateOrderStatusRequest
+import com.sinaptix.smartsell.data.dto.UpdateProductRequest
 import com.sinaptix.smartsell.shared.util.TokenStorage
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -314,6 +320,127 @@ class ApiService(private val tokenStorage: TokenStorage) {
             } else {
                 throw Exception(apiResponse.error?.message ?: "Failed to fetch order")
             }
+        }
+    }
+
+    // ─── Admin — Products CRUD ────────────────────────────────────────────────
+
+    suspend fun createProduct(request: CreateProductRequest): Result<ApiResponse<ProductResponse>> {
+        return authenticatedRequest { token ->
+            val response = client.post("$BASE_URL/api/admin/products") {
+                header("Authorization", "Bearer $token")
+                setBody(request)
+            }
+            response.body<ApiResponse<ProductResponse>>()
+        }
+    }
+
+    suspend fun updateProduct(productId: String, request: UpdateProductRequest): Result<ApiResponse<ProductResponse>> {
+        return authenticatedRequest { token ->
+            val response = client.put("$BASE_URL/api/admin/products/$productId") {
+                header("Authorization", "Bearer $token")
+                setBody(request)
+            }
+            response.body<ApiResponse<ProductResponse>>()
+        }
+    }
+
+    suspend fun deleteProduct(productId: String): Result<ApiResponse<Unit>> {
+        return authenticatedRequest { token ->
+            val response = client.delete("$BASE_URL/api/admin/products/$productId") {
+                header("Authorization", "Bearer $token")
+            }
+            response.body<ApiResponse<Unit>>()
+        }
+    }
+
+    suspend fun getAdminProducts(
+        storeId: String,
+        page: Int = 1,
+        limit: Int = 20
+    ): Result<ApiResponse<PaginatedProductsResponse>> {
+        return authenticatedRequest { token ->
+            val response = client.get("$BASE_URL/api/admin/stores/$storeId/products") {
+                header("Authorization", "Bearer $token")
+                parameter("page", page)
+                parameter("limit", limit)
+            }
+            response.body<ApiResponse<PaginatedProductsResponse>>()
+        }
+    }
+
+    // ─── Admin — Orders ───────────────────────────────────────────────────────
+
+    suspend fun getAdminOrders(
+        storeId: String,
+        status: String? = null,
+        page: Int = 1,
+        limit: Int = 20
+    ): Result<ApiResponse<PaginatedOrdersResponse>> {
+        return authenticatedRequest { token ->
+            val response = client.get("$BASE_URL/api/admin/stores/$storeId/orders") {
+                header("Authorization", "Bearer $token")
+                parameter("page", page)
+                parameter("limit", limit)
+                if (status != null) parameter("status", status)
+            }
+            response.body<ApiResponse<PaginatedOrdersResponse>>()
+        }
+    }
+
+    suspend fun updateOrderStatus(
+        orderId: String,
+        status: String,
+        note: String? = null
+    ): Result<ApiResponse<OrderResponse>> {
+        return authenticatedRequest { token ->
+            val response = client.put("$BASE_URL/api/admin/orders/$orderId/status") {
+                header("Authorization", "Bearer $token")
+                setBody(UpdateOrderStatusRequest(status = status, note = note))
+            }
+            response.body<ApiResponse<OrderResponse>>()
+        }
+    }
+
+    // ─── Admin — Stats ────────────────────────────────────────────────────────
+
+    suspend fun getAdminStats(storeId: String): Result<ApiResponse<AdminStatsResponse>> {
+        return authenticatedRequest { token ->
+            val response = client.get("$BASE_URL/api/admin/stores/$storeId/stats") {
+                header("Authorization", "Bearer $token")
+            }
+            response.body<ApiResponse<AdminStatsResponse>>()
+        }
+    }
+
+    // ─── Admin — Categories CRUD ──────────────────────────────────────────────
+
+    suspend fun createCategory(request: CreateCategoryRequest): Result<ApiResponse<CategoryResponse>> {
+        return authenticatedRequest { token ->
+            val response = client.post("$BASE_URL/api/admin/categories") {
+                header("Authorization", "Bearer $token")
+                setBody(request)
+            }
+            response.body<ApiResponse<CategoryResponse>>()
+        }
+    }
+
+    suspend fun updateCategory(categoryId: String, request: UpdateCategoryRequest): Result<ApiResponse<CategoryResponse>> {
+        return authenticatedRequest { token ->
+            val response = client.put("$BASE_URL/api/admin/categories/$categoryId") {
+                header("Authorization", "Bearer $token")
+                setBody(request)
+            }
+            response.body<ApiResponse<CategoryResponse>>()
+        }
+    }
+
+    suspend fun deleteCategory(categoryId: String): Result<ApiResponse<Unit>> {
+        return authenticatedRequest { token ->
+            val response = client.delete("$BASE_URL/api/admin/categories/$categoryId") {
+                header("Authorization", "Bearer $token")
+            }
+            response.body<ApiResponse<Unit>>()
         }
     }
 

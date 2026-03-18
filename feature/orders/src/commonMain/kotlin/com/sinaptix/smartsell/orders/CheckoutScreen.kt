@@ -48,6 +48,7 @@ import com.sinaptix.smartsell.shared.resources.SurfaceLighter
 import com.sinaptix.smartsell.shared.resources.TextPrimary
 import com.sinaptix.smartsell.shared.resources.TextSecondary
 import com.sinaptix.smartsell.shared.util.RequestState
+import com.sinaptix.smartsell.shared.util.formatPrice
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -371,7 +372,7 @@ private fun SummaryRow(
             color = TextPrimary
         )
         Text(
-            text = valueText ?: "$%.2f".format(value),
+            text = valueText ?: value.formatPrice(),
             fontFamily = MadaBoldFont(),
             fontSize = labelStyle,
             color = valueColor
