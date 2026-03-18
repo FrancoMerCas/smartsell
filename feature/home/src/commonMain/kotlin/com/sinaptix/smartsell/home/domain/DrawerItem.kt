@@ -7,6 +7,7 @@ enum class DrawerItem(
     val icon: DrawableResource
 ) {
     Profile(icon = AppIcon.Icon.Person),
+    Orders(icon = AppIcon.Icon.Receipt),
     Blog(icon = AppIcon.Icon.Book),
     Location(icon = AppIcon.Icon.MapPin),
     Contact(icon = AppIcon.Icon.Edit),

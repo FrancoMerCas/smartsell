@@ -8,7 +8,6 @@ import androidx.navigation.toRoute
 import com.sinaptix.smartsell.admin_panel.AdminPanelScreen
 import com.sinaptix.smartsell.auth.AuthScreen
 import com.sinaptix.smartsell.cart.CartScreen
-import com.sinaptix.smartsell.home.CategoriesScreen
 import com.sinaptix.smartsell.home.HomeGraphScreen
 import com.sinaptix.smartsell.manage_product.ManageProductScreen
 import com.sinaptix.smartsell.orders.CheckoutScreen
@@ -49,6 +48,9 @@ fun SetupNavGraph(
                 navigateToProfile = {
                     navController.navigate(Screen.Profile)
                 },
+                navigateToOrderHistory = {
+                    navController.navigate(Screen.OrderHistory)
+                },
                 navigateToAdminPanel = {
                     navController.navigate(Screen.AdminPanel)
                 },
@@ -58,8 +60,9 @@ fun SetupNavGraph(
                 navigateToCheckout = {
                     navController.navigate(Screen.Checkout)
                 },
-                productsOverviewContent = {
+                productsOverviewContent = { categoryId ->
                     ProductsOverviewScreen(
+                        initialCategoryId = categoryId,
                         onNavigateToProductDetail = { productId ->
                             navController.navigate(Screen.ProductDetail(productId))
                         }
@@ -74,13 +77,6 @@ fun SetupNavGraph(
                             navController.navigate(Screen.ProductsOverview) {
                                 launchSingleTop = true
                             }
-                        }
-                    )
-                },
-                categoriesContent = {
-                    CategoriesScreen(
-                        onNavigateToProducts = { categoryId ->
-                            navController.navigate(Screen.ProductsOverview)
                         }
                     )
                 }

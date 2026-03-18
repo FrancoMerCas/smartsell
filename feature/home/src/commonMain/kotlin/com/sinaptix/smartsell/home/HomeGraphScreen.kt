@@ -68,14 +68,15 @@ import rememberMessageBarState
 fun HomeGraphScreen(
     navigateToAuth: () -> Unit,
     navigateToProfile: () -> Unit,
+    navigateToOrderHistory: () -> Unit,
     navigateToAdminPanel: () -> Unit,
     navigateToProductDetail: (String) -> Unit = {},
     navigateToCheckout: () -> Unit = {},
-    productsOverviewContent: @Composable () -> Unit = {},
-    cartContent: @Composable () -> Unit = {},
-    categoriesContent: @Composable () -> Unit = {}
+    productsOverviewContent: @Composable (categoryId: String?) -> Unit = {},
+    cartContent: @Composable () -> Unit = {}
 ) {
     val navController = rememberNavController()
+    var pendingCategoryId by remember { mutableStateOf<String?>(null) }
     val currentRoute = navController.currentBackStackEntryAsState()
     val selectedDestination by remember {
         derivedStateOf {
@@ -122,6 +123,7 @@ fun HomeGraphScreen(
     ) {
         CustomDrawer(
             onProfileClick = { navigateToProfile() },
+            onOrdersClick = { navigateToOrderHistory() },
             onSignOutClick = {
                 viewModel.signOut(
                     onSuccess = navigateToAuth,
@@ -223,13 +225,25 @@ fun HomeGraphScreen(
                             startDestination = Screen.ProductsOverview
                         ) {
                             composable<Screen.ProductsOverview> {
-                                productsOverviewContent()
+                                productsOverviewContent(pendingCategoryId)
                             }
                             composable<Screen.Cart> {
                                 cartContent()
                             }
                             composable<Screen.Categories> {
-                                categoriesContent()
+                                CategoriesScreen(
+                                    onNavigateToProducts = { categoryId ->
+                                        pendingCategoryId = categoryId
+                                        navController.navigate(Screen.ProductsOverview) {
+                                            launchSingleTop = true
+                                            popUpTo<Screen.ProductsOverview> {
+                                                saveState = true
+                                                inclusive = false
+                                            }
+                                            restoreState = true
+                                        }
+                                    }
+                                )
                             }
                         }
                         Box(
