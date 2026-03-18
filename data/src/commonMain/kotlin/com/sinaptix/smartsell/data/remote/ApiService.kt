@@ -1,24 +1,35 @@
 package com.sinaptix.smartsell.data.remote
 
+import com.sinaptix.smartsell.data.dto.AddCartItemRequest
 import com.sinaptix.smartsell.data.dto.ApiResponse
 import com.sinaptix.smartsell.data.dto.AuthResponse
+import com.sinaptix.smartsell.data.dto.CartResponse
+import com.sinaptix.smartsell.data.dto.CategoryResponse
 import com.sinaptix.smartsell.data.dto.CustomerResponse
 import com.sinaptix.smartsell.data.dto.GoogleAuthRequest
 import com.sinaptix.smartsell.data.dto.LoginRequest
+import com.sinaptix.smartsell.data.dto.OrderResponse
+import com.sinaptix.smartsell.data.dto.PaginatedOrdersResponse
+import com.sinaptix.smartsell.data.dto.PaginatedProductsResponse
+import com.sinaptix.smartsell.data.dto.PlaceOrderRequest
+import com.sinaptix.smartsell.data.dto.ProductResponse
 import com.sinaptix.smartsell.data.dto.RefreshResponse
 import com.sinaptix.smartsell.data.dto.RefreshTokenRequest
 import com.sinaptix.smartsell.data.dto.RegisterRequest
+import com.sinaptix.smartsell.data.dto.UpdateCartItemRequest
 import com.sinaptix.smartsell.data.dto.UpdateCustomerRequest
 import com.sinaptix.smartsell.shared.util.TokenStorage
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
-import io.ktor.client.plugins.defaultRequest
+import io.ktor.client.request.delete
 import io.ktor.client.request.get
 import io.ktor.client.request.header
+import io.ktor.client.request.parameter
 import io.ktor.client.request.post
 import io.ktor.client.request.put
 import io.ktor.client.request.setBody
+import io.ktor.client.plugins.defaultRequest
 import io.ktor.http.ContentType
 import io.ktor.http.contentType
 import io.ktor.serialization.kotlinx.json.json
@@ -139,6 +150,173 @@ class ApiService(private val tokenStorage: TokenStorage) {
         }
     }
 
+    // ─── Products (public - no auth needed) ───────────────────────────────────
+
+    suspend fun getProducts(
+        storeId: String,
+        page: Int = 1,
+        limit: Int = 20,
+        categoryId: String? = null,
+        search: String? = null,
+        isPopular: Boolean? = null,
+        isNew: Boolean? = null
+    ): Result<ApiResponse<PaginatedProductsResponse>> {
+        return try {
+            val response = client.get("$BASE_URL/api/stores/$storeId/products") {
+                parameter("page", page)
+                parameter("limit", limit)
+                if (categoryId != null) parameter("category", categoryId)
+                if (search != null) parameter("search", search)
+                if (isPopular != null) parameter("isPopular", isPopular)
+                if (isNew != null) parameter("isNew", isNew)
+            }
+            Result.success(response.body<ApiResponse<PaginatedProductsResponse>>())
+        } catch (e: Exception) {
+            Result.failure(Exception("Error fetching products: ${e.message}"))
+        }
+    }
+
+    suspend fun getProductById(productId: String): Result<ApiResponse<ProductResponse>> {
+        return try {
+            val response = client.get("$BASE_URL/api/products/$productId")
+            Result.success(response.body<ApiResponse<ProductResponse>>())
+        } catch (e: Exception) {
+            Result.failure(Exception("Error fetching product: ${e.message}"))
+        }
+    }
+
+    // ─── Categories (public) ──────────────────────────────────────────────────
+
+    suspend fun getCategories(storeId: String): Result<ApiResponse<List<CategoryResponse>>> {
+        return try {
+            val response = client.get("$BASE_URL/api/stores/$storeId/categories")
+            Result.success(response.body<ApiResponse<List<CategoryResponse>>>())
+        } catch (e: Exception) {
+            Result.failure(Exception("Error fetching categories: ${e.message}"))
+        }
+    }
+
+    // ─── Cart (authenticated) ─────────────────────────────────────────────────
+
+    suspend fun getCart(storeId: String): Result<ApiResponse<CartResponse>> {
+        return authenticatedRequest { token ->
+            val response = client.get("$BASE_URL/api/stores/$storeId/cart") {
+                header("Authorization", "Bearer $token")
+            }
+            val apiResponse = response.body<ApiResponse<CartResponse>>()
+            if (apiResponse.success) {
+                apiResponse
+            } else {
+                throw Exception(apiResponse.error?.message ?: "Failed to fetch cart")
+            }
+        }
+    }
+
+    suspend fun addCartItem(storeId: String, request: AddCartItemRequest): Result<ApiResponse<CartResponse>> {
+        return authenticatedRequest { token ->
+            val response = client.post("$BASE_URL/api/stores/$storeId/cart/items") {
+                header("Authorization", "Bearer $token")
+                setBody(request)
+            }
+            val apiResponse = response.body<ApiResponse<CartResponse>>()
+            if (apiResponse.success) {
+                apiResponse
+            } else {
+                throw Exception(apiResponse.error?.message ?: "Failed to add item to cart")
+            }
+        }
+    }
+
+    suspend fun updateCartItem(storeId: String, itemId: String, request: UpdateCartItemRequest): Result<ApiResponse<CartResponse>> {
+        return authenticatedRequest { token ->
+            val response = client.put("$BASE_URL/api/stores/$storeId/cart/items/$itemId") {
+                header("Authorization", "Bearer $token")
+                setBody(request)
+            }
+            val apiResponse = response.body<ApiResponse<CartResponse>>()
+            if (apiResponse.success) {
+                apiResponse
+            } else {
+                throw Exception(apiResponse.error?.message ?: "Failed to update cart item")
+            }
+        }
+    }
+
+    suspend fun removeCartItem(storeId: String, itemId: String): Result<ApiResponse<CartResponse>> {
+        return authenticatedRequest { token ->
+            val response = client.delete("$BASE_URL/api/stores/$storeId/cart/items/$itemId") {
+                header("Authorization", "Bearer $token")
+            }
+            val apiResponse = response.body<ApiResponse<CartResponse>>()
+            if (apiResponse.success) {
+                apiResponse
+            } else {
+                throw Exception(apiResponse.error?.message ?: "Failed to remove cart item")
+            }
+        }
+    }
+
+    suspend fun clearCart(storeId: String): Result<ApiResponse<Unit>> {
+        return authenticatedRequest { token ->
+            val response = client.delete("$BASE_URL/api/stores/$storeId/cart") {
+                header("Authorization", "Bearer $token")
+            }
+            val apiResponse = response.body<ApiResponse<Unit>>()
+            if (apiResponse.success) {
+                apiResponse
+            } else {
+                throw Exception(apiResponse.error?.message ?: "Failed to clear cart")
+            }
+        }
+    }
+
+    // ─── Orders (authenticated) ───────────────────────────────────────────────
+
+    suspend fun placeOrder(request: PlaceOrderRequest): Result<ApiResponse<OrderResponse>> {
+        return authenticatedRequest { token ->
+            val response = client.post("$BASE_URL/api/orders") {
+                header("Authorization", "Bearer $token")
+                setBody(request)
+            }
+            val apiResponse = response.body<ApiResponse<OrderResponse>>()
+            if (apiResponse.success) {
+                apiResponse
+            } else {
+                throw Exception(apiResponse.error?.message ?: "Failed to place order")
+            }
+        }
+    }
+
+    suspend fun getMyOrders(page: Int = 1, limit: Int = 10): Result<ApiResponse<PaginatedOrdersResponse>> {
+        return authenticatedRequest { token ->
+            val response = client.get("$BASE_URL/api/orders/my") {
+                header("Authorization", "Bearer $token")
+                parameter("page", page)
+                parameter("limit", limit)
+            }
+            val apiResponse = response.body<ApiResponse<PaginatedOrdersResponse>>()
+            if (apiResponse.success) {
+                apiResponse
+            } else {
+                throw Exception(apiResponse.error?.message ?: "Failed to fetch orders")
+            }
+        }
+    }
+
+    suspend fun getOrderById(orderId: String): Result<ApiResponse<OrderResponse>> {
+        return authenticatedRequest { token ->
+            val response = client.get("$BASE_URL/api/orders/$orderId") {
+                header("Authorization", "Bearer $token")
+            }
+            val apiResponse = response.body<ApiResponse<OrderResponse>>()
+            if (apiResponse.success) {
+                apiResponse
+            } else {
+                throw Exception(apiResponse.error?.message ?: "Failed to fetch order")
+            }
+        }
+    }
+
     // ─── Token refresh ─────────────────────────────────────────────────────────
 
     suspend fun refreshToken(refreshToken: String): Result<RefreshResponse> {
@@ -166,7 +344,6 @@ class ApiService(private val tokenStorage: TokenStorage) {
         return try {
             Result.success(block(accessToken))
         } catch (e: Exception) {
-            // Attempt a single token refresh on any exception (covers 401)
             val refreshToken = tokenStorage.getRefreshToken()
                 ?: run {
                     tokenStorage.clearTokens()

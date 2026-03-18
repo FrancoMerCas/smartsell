@@ -7,8 +7,15 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.sinaptix.smartsell.admin_panel.AdminPanelScreen
 import com.sinaptix.smartsell.auth.AuthScreen
+import com.sinaptix.smartsell.cart.CartScreen
+import com.sinaptix.smartsell.home.CategoriesScreen
 import com.sinaptix.smartsell.home.HomeGraphScreen
 import com.sinaptix.smartsell.manage_product.ManageProductScreen
+import com.sinaptix.smartsell.orders.CheckoutScreen
+import com.sinaptix.smartsell.orders.OrderDetailScreen
+import com.sinaptix.smartsell.orders.OrderHistoryScreen
+import com.sinaptix.smartsell.products.ProductDetailScreen
+import com.sinaptix.smartsell.products.ProductsOverviewScreen
 import com.sinaptix.smartsell.profile.ProfileScreen
 import com.sinaptix.smartsell.shared.navigation.Screen
 
@@ -44,6 +51,38 @@ fun SetupNavGraph(
                 },
                 navigateToAdminPanel = {
                     navController.navigate(Screen.AdminPanel)
+                },
+                navigateToProductDetail = { productId ->
+                    navController.navigate(Screen.ProductDetail(productId))
+                },
+                navigateToCheckout = {
+                    navController.navigate(Screen.Checkout)
+                },
+                productsOverviewContent = {
+                    ProductsOverviewScreen(
+                        onNavigateToProductDetail = { productId ->
+                            navController.navigate(Screen.ProductDetail(productId))
+                        }
+                    )
+                },
+                cartContent = {
+                    CartScreen(
+                        onNavigateToCheckout = {
+                            navController.navigate(Screen.Checkout)
+                        },
+                        onNavigateToProducts = {
+                            navController.navigate(Screen.ProductsOverview) {
+                                launchSingleTop = true
+                            }
+                        }
+                    )
+                },
+                categoriesContent = {
+                    CategoriesScreen(
+                        onNavigateToProducts = { categoryId ->
+                            navController.navigate(Screen.ProductsOverview)
+                        }
+                    )
                 }
             )
         }
@@ -69,6 +108,49 @@ fun SetupNavGraph(
             ManageProductScreen(
                 id = id,
                 navigateBack = {
+                    navController.navigateUp()
+                }
+            )
+        }
+        composable<Screen.ProductDetail> {
+            val productId = it.toRoute<Screen.ProductDetail>().productId
+            ProductDetailScreen(
+                productId = productId,
+                onNavigateBack = {
+                    navController.navigateUp()
+                },
+                onNavigateToCart = {
+                    navController.navigate(Screen.Cart)
+                }
+            )
+        }
+        composable<Screen.Checkout> {
+            CheckoutScreen(
+                onNavigateBack = {
+                    navController.navigateUp()
+                },
+                onOrderPlaced = { orderId ->
+                    navController.navigate(Screen.OrderDetail(orderId)) {
+                        popUpTo<Screen.Checkout> { inclusive = true }
+                    }
+                }
+            )
+        }
+        composable<Screen.OrderHistory> {
+            OrderHistoryScreen(
+                onNavigateBack = {
+                    navController.navigateUp()
+                },
+                onNavigateToOrderDetail = { orderId ->
+                    navController.navigate(Screen.OrderDetail(orderId))
+                }
+            )
+        }
+        composable<Screen.OrderDetail> {
+            val orderId = it.toRoute<Screen.OrderDetail>().orderId
+            OrderDetailScreen(
+                orderId = orderId,
+                onNavigateBack = {
                     navController.navigateUp()
                 }
             )

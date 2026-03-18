@@ -1,4 +1,3 @@
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -47,6 +46,9 @@ kotlin {
             implementation(project(path = ":feature:profile"))
             implementation(project(path = ":feature:admin_panel"))
             implementation(project(path = ":feature:admin_panel:manage_product"))
+            implementation(project(path = ":feature:products"))
+            implementation(project(path = ":feature:cart"))
+            implementation(project(path = ":feature:orders"))
         }
     }
 }

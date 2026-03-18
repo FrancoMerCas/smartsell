@@ -1,7 +1,14 @@
 {
   "permissions": {
     "allow": [
-      "Bash(mkdir -p /Users/franco/StudioProjects/SynaptiX/SmartSell/data/src/commonMain/kotlin/com/sinaptix/smartsell/data/remote && mkdir -p /Users/franco/StudioProjects/SynaptiX/SmartSell/data/src/androidMain/kotlin/com/sinaptix/smartsell/data/remote && mkdir -p /Users/franco/StudioProjects/SynaptiX/SmartSell/data/src/iosMain/kotlin/com/sinaptix/smartsell/data/remote)"
+      "Bash(mkdir -p /Users/franco/StudioProjects/SynaptiX/SmartSell/data/src/commonMain/kotlin/com/sinaptix/smartsell/data/remote && mkdir -p /Users/franco/StudioProjects/SynaptiX/SmartSell/data/src/androidMain/kotlin/com/sinaptix/smartsell/data/remote && mkdir -p /Users/franco/StudioProjects/SynaptiX/SmartSell/data/src/iosMain/kotlin/com/sinaptix/smartsell/data/remote)",
+      "Bash(mkdir -p /Users/franco/StudioProjects/SynaptiX/SmartSell/feature/products/src/commonMain/kotlin/com/sinaptix/smartsell/products/module\nmkdir -p /Users/franco/StudioProjects/SynaptiX/SmartSell/feature/products/src/commonMain/kotlin/com/sinaptix/smartsell/products/component\nmkdir -p /Users/franco/StudioProjects/SynaptiX/SmartSell/feature/cart/src/commonMain/kotlin/com/sinaptix/smartsell/cart/module\nmkdir -p /Users/franco/StudioProjects/SynaptiX/SmartSell/feature/orders/src/commonMain/kotlin/com/sinaptix/smartsell/orders/module\necho \"Directories created\")",
+      "Bash(./gradlew :feature:products:compileDebugKotlinAndroid 2>&1 | tail -60)",
+      "Bash(./gradlew :feature:products:compileDebugKotlinAndroid 2>&1 | tail -40)",
+      "Bash(./gradlew assembleDebug 2>&1 | grep -E \"\\(FAILED|error:|e:\\)\" | head -40)",
+      "Bash(./gradlew assembleDebug 2>&1 | grep -E \"^e:|FAILED|BUILD\" | head -40)",
+      "Bash(./gradlew assembleDebug 2>&1 | grep -E \"^e:|FAILED|BUILD SUCCESS\" | head -40)",
+      "Bash(./gradlew :feature:products:compileDebugKotlinAndroid :feature:cart:compileDebugKotlinAndroid :feature:orders:compileDebugKotlinAndroid :feature:home:compileDebugKotlinAndroid :navigation:compileDebugKotlinAndroid 2>&1 | grep -E \"^e:|FAILED|BUILD SUCCESS\")"
     ]
   }
 }

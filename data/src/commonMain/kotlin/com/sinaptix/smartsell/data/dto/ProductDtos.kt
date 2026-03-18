@@ -1,21 +1,20 @@
-package com.sinaptix.smartsell.shared.domain
+package com.sinaptix.smartsell.data.dto
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Product(
-    val id: String,
+data class ProductResponse(
+    val _id: String,
     val storeId: String,
     val title: String,
     val description: String,
     val thumbnail: String,
     val images: List<String> = emptyList(),
-    val category: String,
-    val categoryName: String = "",
+    val category: CategoryInProduct? = null,
     val productType: String = "physical",
     val hasVariants: Boolean = false,
-    val variantDimensions: List<VariantDimension> = emptyList(),
-    val variantCombinations: List<VariantCombination> = emptyList(),
+    val variantDimensions: List<VariantDimensionDto> = emptyList(),
+    val variantCombinations: List<VariantCombinationDto> = emptyList(),
     val price: Double = 0.0,
     val originalPrice: Double? = null,
     val discountPercent: Double? = null,
@@ -32,17 +31,33 @@ data class Product(
 )
 
 @Serializable
-data class VariantDimension(
+data class CategoryInProduct(
+    val _id: String,
+    val name: String,
+    val color: String = "#819A91"
+)
+
+@Serializable
+data class VariantDimensionDto(
     val name: String,
     val values: List<String>
 )
 
 @Serializable
-data class VariantCombination(
+data class VariantCombinationDto(
     val sku: String,
     val dimensionValues: Map<String, String>,
     val price: Double,
     val originalPrice: Double? = null,
     val stock: Int,
     val isActive: Boolean = true
+)
+
+@Serializable
+data class PaginatedProductsResponse(
+    val products: List<ProductResponse>,
+    val total: Int,
+    val page: Int,
+    val limit: Int,
+    val pages: Int
 )

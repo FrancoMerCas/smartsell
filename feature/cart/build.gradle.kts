@@ -5,7 +5,6 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
-    alias(libs.plugins.serialization)
 }
 
 kotlin {
@@ -21,7 +20,7 @@ kotlin {
         iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
-            baseName = "di"
+            baseName = "cart"
             isStatic = true
         }
     }
@@ -37,23 +36,19 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
 
-            implementation(libs.koin.core)
             implementation(libs.koin.compose)
             implementation(libs.koin.compose.viewmodel)
+            implementation(libs.coil3.compose)
+            implementation(libs.coil3.network.ktor)
 
-            implementation(project(path = ":feature:auth"))
-            implementation(project(path = ":feature:home"))
-            implementation(project(path = ":feature:profile"))
-            implementation(project(path = ":feature:products"))
-            implementation(project(path = ":feature:cart"))
-            implementation(project(path = ":feature:orders"))
+            implementation(project(path = ":shared"))
             implementation(project(path = ":data"))
         }
     }
 }
 
 android {
-    namespace = "com.sinaptix.smartsell.di"
+    namespace = "com.sinaptix.smartsell.cart"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {

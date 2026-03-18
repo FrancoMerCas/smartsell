@@ -1,16 +1,19 @@
 package com.sinaptix.smartsell.di
 
 import com.sinaptix.smartsell.auth.module.authModule
+import com.sinaptix.smartsell.cart.module.cartModule
 import com.sinaptix.smartsell.data.module.repositoryModule
 import com.sinaptix.smartsell.home.module.homeModule
+import com.sinaptix.smartsell.orders.module.ordersModule
+import com.sinaptix.smartsell.products.module.productsModule
 import com.sinaptix.smartsell.profile.module.profileModule
 import org.koin.core.KoinApplication
 import org.koin.core.context.startKoin
 
 fun initializeKoin(
-    config: (KoinApplication.() ->Unit)? = null
+    config: (KoinApplication.() -> Unit)? = null
 ) {
-    startKoin{
+    startKoin {
         config?.invoke(this)
         modules(
             getAllModules()
@@ -22,5 +25,8 @@ private fun getAllModules() = listOf(
     repositoryModule,
     authModule,
     homeModule,
-    profileModule
+    profileModule,
+    productsModule,
+    cartModule,
+    ordersModule
 )
