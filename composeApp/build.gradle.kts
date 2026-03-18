@@ -27,6 +27,7 @@ kotlin {
             export(compose.runtime)
             export(compose.foundation)
             export(compose.material3)
+            export(compose.materialIconsExtended)
         }
     }
 
@@ -41,6 +42,7 @@ kotlin {
             api(compose.runtime)
             api(compose.foundation)
             api(compose.material3)
+            api(compose.materialIconsExtended)
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
