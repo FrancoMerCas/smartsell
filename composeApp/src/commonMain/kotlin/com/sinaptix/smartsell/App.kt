@@ -30,18 +30,20 @@ fun App() {
         }
 
         LaunchedEffect(Unit) {
-            GoogleAuthProvider.create(
-                credentials = GoogleAuthCredentials(
-                    serverId = WEB_CLIENT_ID
+            try {
+                GoogleAuthProvider.create(
+                    credentials = GoogleAuthCredentials(
+                        serverId = WEB_CLIENT_ID
+                    )
                 )
-            )
-            appReady = true
+            } catch (e: Exception) {
+                // GoogleAuthProvider may fail on some platforms — app continues regardless
+            } finally {
+                appReady = true
+            }
         }
 
-        AnimatedVisibility(
-            modifier = Modifier.fillMaxSize(),
-            visible = appReady
-        ) {
+        if (appReady) {
             SetupNavGraph(
                 startDestination = startDestination
             )
