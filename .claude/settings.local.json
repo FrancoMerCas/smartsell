@@ -17,7 +17,14 @@
       "Bash(./gradlew :feature:products:compileCommonMainKotlinMetadata 2>&1 | grep \"e: \")",
       "Bash(./gradlew :feature:admin_panel:compileCommonMainKotlinMetadata 2>&1 | grep \"e: \\\\|FAILED\\\\|BUILD\" | head -40)",
       "Bash(./gradlew :feature:admin_panel:compileCommonMainKotlinMetadata :feature:admin_panel:manage_product:compileCommonMainKotlinMetadata :data:compileCommonMainKotlinMetadata :di:compileCommonMainKotlinMetadata :feature:products:compileCommonMainKotlinMetadata :feature:cart:compileCommonMainKotlinMetadata :feature:orders:compileCommonMainKotlinMetadata 2>&1 | grep \"e: \\\\|FAILED\\\\|BUILD\" | head -40)",
-      "Bash(./gradlew assembleDebug 2>&1 | tail -30)"
+      "Bash(./gradlew assembleDebug 2>&1 | tail -30)",
+      "Bash(./gradlew assembleDebug 2>&1 | grep -E \"^w: |warning:|deprecated|Warning\" | sort -u | head -40)",
+      "Bash(./gradlew assembleDebug --rerun-tasks 2>&1 | head -80)",
+      "Bash(./gradlew build:*)",
+      "Bash(./gradlew assembleDebug --rerun-tasks --no-configuration-cache --warning-mode all 2>&1 | grep -iE \"deprecat|warn\" | sort -u | head -60)",
+      "Bash(./gradlew assembleDebug --rerun-tasks --no-configuration-cache 2>&1 | tee /tmp/full_build.txt; echo \"---\"; grep -iE \"w:|warning|deprecat|is deprecated\" /tmp/full_build.txt | sort -u | head -60)",
+      "Bash(./gradlew :composeApp:compileDebugKotlinAndroid --rerun-tasks --no-configuration-cache 2>&1 | grep -v \"^>\" | grep -v \"^$\" | grep -v \"UP-TO-DATE\" | head -50)",
+      "Bash(./gradlew :composeApp:compileCommonMainKotlinMetadata --rerun-tasks --no-configuration-cache 2>&1 | grep -v \"^>\" | grep -v \"^$\" | grep -v \"UP-TO-DATE\" | head -60)"
     ]
   }
 }

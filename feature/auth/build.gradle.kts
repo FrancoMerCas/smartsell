@@ -54,7 +54,7 @@ android {
 
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
-        targetSdk = libs.versions.android.targetSdk.get().toInt()
+        lint { targetSdk = libs.versions.android.targetSdk.get().toInt() }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -63,6 +63,5 @@ android {
 }
 
 composeCompiler {
-    enableStrongSkippingMode = true
-    stabilityConfigurationFile = rootProject.layout.projectDirectory.file("stability_config.conf")
+    stabilityConfigurationFiles.add(rootProject.layout.projectDirectory.file("stability_config.conf"))
 }
